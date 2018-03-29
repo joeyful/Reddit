@@ -10,6 +10,12 @@ import Foundation
 
 final class RedditController {
     
+    var topList: [Child]?
+    
+    var listCount: Int {
+        return topList?.count ?? 0
+    }
+    
     // MARK: - Singleton
     
     static let shared = RedditController()
@@ -18,6 +24,15 @@ final class RedditController {
 
     private init() {
         
+    }
+    
+    func loadTopList(success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
+        RedditController.shared.top(success: { result in
+            self.topList = result.children
+            success()
+        }, error: { error in
+            errorHandle(error)
+        })
     }
 }
 

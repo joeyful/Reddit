@@ -22,6 +22,9 @@
 		BF355AB7206CC4CD00151E13 /* RedditAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AB6206CC4CD00151E13 /* RedditAPI.swift */; };
 		BF355AB9206CD6A400151E13 /* Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AB8206CD6A400151E13 /* Children.swift */; };
 		BF355ABC206CD97500151E13 /* UIViewController+presentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */; };
+		BF355ABE206D5C1F00151E13 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABD206D5C1F00151E13 /* CardView.swift */; };
+		BF355AC0206D5D0900151E13 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */; };
+		BF355AC3206D61E300151E13 /* RedditTopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AC2206D61E300151E13 /* RedditTopListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		BF355AB6206CC4CD00151E13 /* RedditAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditAPI.swift; sourceTree = "<group>"; };
 		BF355AB8206CD6A400151E13 /* Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Children.swift; sourceTree = "<group>"; };
 		BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAlert.swift"; sourceTree = "<group>"; };
+		BF355ABD206D5C1F00151E13 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		BF355AC2206D61E300151E13 /* RedditTopListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTopListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				BF355AA7206CC25C00151E13 /* AppDelegate.swift */,
+				BF355ABD206D5C1F00151E13 /* CardView.swift */,
 				BF355ABA206CD94B00151E13 /* Foundation Extension */,
 				BF355AA9206CC25C00151E13 /* Services */,
 			);
@@ -217,6 +224,7 @@
 		BF355AAC206CC25C00151E13 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF355AC1206D61B300151E13 /* TableViewCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,8 +233,17 @@
 			isa = PBXGroup;
 			children = (
 				BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */,
+				BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */,
 			);
 			path = "Foundation Extension";
+			sourceTree = "<group>";
+		};
+		BF355AC1206D61B300151E13 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				BF355AC2206D61E300151E13 /* RedditTopListTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,11 +384,14 @@
 				BF355ABC206CD97500151E13 /* UIViewController+presentAlert.swift in Sources */,
 				BF355AAD206CC25C00151E13 /* Top.swift in Sources */,
 				BF355AB1206CC25C00151E13 /* RedditService.swift in Sources */,
+				BF355AC0206D5D0900151E13 /* UIView+Shadow.swift in Sources */,
+				BF355AC3206D61E300151E13 /* RedditTopListTableViewCell.swift in Sources */,
 				BF355AB9206CD6A400151E13 /* Children.swift in Sources */,
 				BF355AB0206CC25C00151E13 /* RedditController.swift in Sources */,
 				BF355AB5206CC25C00151E13 /* RedditViewController.swift in Sources */,
 				BF355AB3206CC25C00151E13 /* AppDelegate.swift in Sources */,
 				BF355AB2206CC25C00151E13 /* API.swift in Sources */,
+				BF355ABE206D5C1F00151E13 /* CardView.swift in Sources */,
 				BF355AB4206CC25C00151E13 /* APIRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
