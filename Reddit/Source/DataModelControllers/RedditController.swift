@@ -13,13 +13,17 @@ final class RedditController {
     // MARK: - Singleton
     
     static let shared = RedditController()
-    
+
+    private let service = RedditService()
+
     private init() {
         
     }
-    
-    private let service = RedditService()
+}
 
+// MARK: - API
+
+extension RedditController {
     func top(success : @escaping  (Top)->Void , error errorCallback : @escaping  (String) -> Void) {
         service.top(responseQueue: .main, success: success, error: errorCallback)
         

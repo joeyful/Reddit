@@ -12,13 +12,16 @@ class RedditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        RedditController.shared.top(success: { result in
+            guard let result = result.children?.first else { return }
+            print("\(result)")
+            
+        }, error: { error in
+            self.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
+        })
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 
 }
