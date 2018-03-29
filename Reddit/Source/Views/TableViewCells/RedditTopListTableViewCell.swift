@@ -10,11 +10,11 @@ import UIKit
 
 class RedditTopListTableViewCell: UITableViewCell {
 
-    @IBOutlet fileprivate weak var titleLabel           : UILabel?
-    @IBOutlet fileprivate weak var authorLabel          : UILabel?
-    @IBOutlet fileprivate weak var numOfCount           : UILabel?
-    @IBOutlet fileprivate weak var dateLabel            : UILabel?
-    @IBOutlet fileprivate weak var thumbnailImageView   : UIImageView?
+    @IBOutlet weak var titleLabel           : UILabel?
+    @IBOutlet weak var authorLabel          : UILabel?
+    @IBOutlet weak var numOfCount           : UILabel?
+    @IBOutlet weak var dateLabel            : UILabel?
+    @IBOutlet weak var thumbnailImageContentView   : ImageContentView?
 
     override func awakeFromNib() {
         super.awakeFromNib()

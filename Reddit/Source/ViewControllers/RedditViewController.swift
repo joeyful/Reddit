@@ -12,7 +12,7 @@ class RedditViewController: UIViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet var tableView : UITableView?
+    @IBOutlet fileprivate weak var tableView : UITableView?
 
     // MARK: - Life Cycle
 
@@ -50,17 +50,16 @@ extension RedditViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let reuseIdentifier = card.cardType.rawValue
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "RedditTopListTableViewCell")
-//        if let discoverCell = cell as? DiscoverCardTableViewCell, let discoverCardView = discoverCell.cardView {
-//
-//            discoverCell.card = card
-//            discoverCell.delegate = self
-//            discoverCell.cardView?.delegate = self
-//
-//            registerForPreviewing(with: discoverCardView, sourceView: discoverCardView)
-//        }
+        if let topListCell = cell as? RedditTopListTableViewCell, let thumbnailImageContentView = topListCell.thumbnailImageContentView {
+            if let list = RedditController.shared.topList {
+                let child = list[indexPath.row]
+                thumbnailImageContentView.url = child.thumbnail
+                topListCell.titleLabel?.text = child.title
+                topListCell.authorLabel?.text = child.author
+//                topListCell.dateLabel?.text = child.createdUTC?.description(with: Locale(identifier: "PST"))
+            }
+        }
         
         return cell!
     }
