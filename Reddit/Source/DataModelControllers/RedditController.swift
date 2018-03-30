@@ -10,11 +10,14 @@ import Foundation
 
 final class RedditController {
     
-    var topList: [Child]?
+    private var after: String?
+
+    private(set) var list = [Child]()
     
     var listCount: Int {
-        return topList?.count ?? 0
+        return list.count
     }
+    
     
     // MARK: - Singleton
     
@@ -26,9 +29,10 @@ final class RedditController {
         
     }
     
-    func loadTopList(success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
+    func loadList(success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
         RedditController.shared.top(success: { result in
-            self.topList = result.children
+            self.list += result.children ?? []
+            self.after = result.after
             success()
         }, error: { error in
             errorHandle(error)
@@ -40,7 +44,7 @@ final class RedditController {
 
 extension RedditController {
     func top(success : @escaping  (Top)->Void , error errorCallback : @escaping  (String) -> Void) {
-        service.top(responseQueue: .main, success: success, error: errorCallback)
+        service.top(after: after, count: "\(listCount)", responseQueue: .main, success: success, error: errorCallback)
         
     }
 }

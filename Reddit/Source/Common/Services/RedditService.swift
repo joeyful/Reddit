@@ -21,9 +21,13 @@ class RedditService {
         self.init(api: RedditAPI())
     }
     
-    func top(responseQueue: DispatchQueue, success: @escaping (Top) -> Void, error errorCallback: @escaping (String) -> Void) {
+    func top(after: String?, count: String, responseQueue: DispatchQueue, success: @escaping (Top) -> Void, error errorCallback: @escaping (String) -> Void) {
         
-        let request = APIRequest(.post, path: "top.json")
+        var request = APIRequest(.post, path: "top.json")
+        
+        if let after = after {
+            request.parameters = request.parameters + [("after", after), ("count", count)]
+        }
         
         api.send(request, success: { (result, url) in
             responseQueue.async {

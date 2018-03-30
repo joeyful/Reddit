@@ -20,6 +20,7 @@ class RedditTopListViewController: UIViewController {
         super.viewDidLoad()
         
         tableView?.autoSize()
+        tableView?.prefetchDataSource = self
         loadList()
     }
 }
@@ -30,7 +31,7 @@ class RedditTopListViewController: UIViewController {
 fileprivate extension RedditTopListViewController {
     
     func loadList() {
-        RedditController.shared.loadTopList(success: {
+        RedditController.shared.loadList(success: {
                 self.tableView?.reloadData()
         }, error: { error in
                 self.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
@@ -50,8 +51,8 @@ extension RedditTopListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RedditTopListTableViewCell")
-        if let topListCell = cell as? RedditTopListTableViewCell,
-           let list = RedditController.shared.topList, indexPath.row < list.count {
+        let list = RedditController.shared.list
+        if let topListCell = cell as? RedditTopListTableViewCell, indexPath.row < list.count {
                 populate(topListCell, with: list[indexPath.row])
         }
         
@@ -72,3 +73,15 @@ extension RedditTopListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDataSource
+
+extension RedditTopListViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let listCount = RedditController.shared.listCount
+        let needsFetch = indexPaths.contains { $0.row >= listCount - 1 }
+        guard needsFetch else { return }
+        
+        loadList()
+    }
+}
