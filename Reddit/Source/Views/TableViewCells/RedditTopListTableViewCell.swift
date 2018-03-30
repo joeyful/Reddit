@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol RedditTopListTableViewCellDelegate: class {
+    func topListCell(_ cell : RedditTopListTableViewCell, didSelect thumbnail : URL?)
+}
+
 class RedditTopListTableViewCell: UITableViewCell {
 
+    weak var delegate : RedditTopListTableViewCellDelegate?
+    
     @IBOutlet weak var titleLabel           : UILabel?
     @IBOutlet weak var authorLabel          : UILabel?
     @IBOutlet weak var byLabel              : UILabel?
@@ -36,4 +42,12 @@ class RedditTopListTableViewCell: UITableViewCell {
         thumbnailImageContentView?.url = thumbnailUrl
     }
 
+}
+
+// MARK: - Action
+
+extension RedditTopListTableViewCell {
+    @IBAction func detail(_ button: UIButton) {
+        delegate?.topListCell(self, didSelect: thumbnailImageContentView?.url)
+    }
 }

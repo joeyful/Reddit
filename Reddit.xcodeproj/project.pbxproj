@@ -34,6 +34,7 @@
 		BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD2206DE35400151E13 /* String+Pluralization.swift */; };
 		BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */; };
 		BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */; };
+		BFC1CAD9206EDBEE004684E7 /* RedditDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		BF355AD2206DE35400151E13 /* String+Pluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pluralization.swift"; sourceTree = "<group>"; };
 		BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+AutoSize.swift"; sourceTree = "<group>"; };
 		BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PercentageEncoding.swift"; sourceTree = "<group>"; };
+		BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				BF355AAB206CC25C00151E13 /* RedditTopListViewController.swift */,
+				BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				BF355AB0206CC25C00151E13 /* RedditController.swift in Sources */,
 				BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */,
 				BF355AC9206D7B9C00151E13 /* ImageContentView.swift in Sources */,
+				BFC1CAD9206EDBEE004684E7 /* RedditDetailViewController.swift in Sources */,
 				BF355AB5206CC25C00151E13 /* RedditTopListViewController.swift in Sources */,
 				BF355AB3206CC25C00151E13 /* AppDelegate.swift in Sources */,
 				BF355AB2206CC25C00151E13 /* API.swift in Sources */,
