@@ -15,6 +15,7 @@ struct Child : Codable {
     let thumbnail: URL?
     let createdUTC: Date?
     let numComments: Int?
+    let preview : Preview?
     
     enum CodingKeys: String, CodingKey {
         case data
@@ -24,6 +25,7 @@ struct Child : Codable {
         case title
         case author
         case thumbnail
+        case preview
         case createdUTC = "created_utc"
         case numComments = "num_comments"
     }
@@ -36,6 +38,7 @@ struct Child : Codable {
         author = try data.decodeIfPresent(String.self, forKey: .author)
         thumbnail = try data.decodeIfPresent(URL.self, forKey: .thumbnail)
         numComments = try data.decodeIfPresent(Int.self, forKey: .numComments)
+        preview = try data.decodeIfPresent(Preview.self, forKey: .preview)
         
         if let timestamp = try data.decodeIfPresent(Double.self, forKey: .createdUTC) {
             createdUTC = Date(timeIntervalSince1970: timestamp)
@@ -53,5 +56,7 @@ struct Child : Codable {
         try data.encodeIfPresent(thumbnail, forKey: .thumbnail)
         try data.encodeIfPresent(numComments, forKey: .numComments)
         try data.encodeIfPresent(createdUTC?.timeIntervalSince1970, forKey: .createdUTC)
+        try data.encodeIfPresent(preview, forKey: .preview)
+
     }
 }

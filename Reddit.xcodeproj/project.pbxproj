@@ -35,6 +35,7 @@
 		BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */; };
 		BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */; };
 		BFC1CAD9206EDBEE004684E7 /* RedditDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */; };
+		BFC1CADB206EF43D004684E7 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1CADA206EF43D004684E7 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+AutoSize.swift"; sourceTree = "<group>"; };
 		BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PercentageEncoding.swift"; sourceTree = "<group>"; };
 		BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditDetailViewController.swift; sourceTree = "<group>"; };
+		BFC1CADA206EF43D004684E7 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			children = (
 				BF355A9C206CC25C00151E13 /* Top.swift */,
 				BF355AB8206CD6A400151E13 /* Children.swift */,
+				BFC1CADA206EF43D004684E7 /* Image.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			files = (
 				BF355ACB206D7C1700151E13 /* UIView+Fade.swift in Sources */,
 				BF355AC5206D78F100151E13 /* ImageLoader.swift in Sources */,
+				BFC1CADB206EF43D004684E7 /* Image.swift in Sources */,
 				BF355AB7206CC4CD00151E13 /* RedditAPI.swift in Sources */,
 				BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */,
 				BF355ABC206CD97500151E13 /* UIViewController+presentAlert.swift in Sources */,
