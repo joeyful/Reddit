@@ -1,5 +1,5 @@
 //
-//  RedditViewController.swift
+//  RedditTopListViewController.swift
 //  Reddit
 //
 //  Created by Joey Wei on 3/28/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RedditViewController: UIViewController {
+class RedditTopListViewController: UIViewController {
 
     // MARK: - Outlets
 
@@ -29,7 +29,7 @@ class RedditViewController: UIViewController {
 
 // MARK: - Helper
 
-fileprivate extension RedditViewController {
+fileprivate extension RedditTopListViewController {
     func loadTopRedditList() {
         RedditController.shared.loadTopList(success: {
                 self.tableView?.reloadData()
@@ -42,7 +42,7 @@ fileprivate extension RedditViewController {
 
 // MARK: - UITableViewDataSource
 
-extension RedditViewController: UITableViewDataSource {
+extension RedditTopListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RedditController.shared.listCount
@@ -57,7 +57,10 @@ extension RedditViewController: UITableViewDataSource {
                 thumbnailImageContentView.url = child.thumbnail
                 topListCell.titleLabel?.text = child.title
                 topListCell.authorLabel?.text = child.author
-//                topListCell.dateLabel?.text = child.createdUTC?.description(with: Locale(identifier: "PST"))
+                let numComments = child.numComments ?? 0
+                topListCell.numberOfCountLabel?.text = "\(numComments) comments"
+                let createdUTC = child.createdUTC ?? Date()
+                topListCell.dateLabel?.text = "\(Date().offsetFrom(createdUTC)) ago"
             }
         }
         

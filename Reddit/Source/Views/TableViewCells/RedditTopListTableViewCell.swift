@@ -12,13 +12,14 @@ class RedditTopListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel           : UILabel?
     @IBOutlet weak var authorLabel          : UILabel?
-    @IBOutlet weak var numOfCount           : UILabel?
+    @IBOutlet weak var byLabel              : UILabel?
+    @IBOutlet weak var numberOfCountLabel   : UILabel?
     @IBOutlet weak var dateLabel            : UILabel?
     @IBOutlet weak var thumbnailImageContentView   : ImageContentView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        byLabel?.text = NSLocalizedString("by", comment: "by")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
