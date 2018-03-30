@@ -13,7 +13,7 @@ class RedditTopListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel           : UILabel?
     @IBOutlet weak var authorLabel          : UILabel?
     @IBOutlet weak var byLabel              : UILabel?
-    @IBOutlet weak var numberOfCountLabel   : UILabel?
+    @IBOutlet weak var numberOfCommentLabel   : UILabel?
     @IBOutlet weak var dateLabel            : UILabel?
     @IBOutlet weak var thumbnailImageContentView   : ImageContentView?
 
@@ -26,6 +26,14 @@ class RedditTopListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure(title: String?, author: String?, numberOfComment: String?, date: String?, thumbnailUrl: URL?) {
+        titleLabel?.text = title
+        authorLabel?.text = author
+        numberOfCommentLabel?.text = numberOfComment
+        dateLabel?.text = date
+        thumbnailImageContentView?.url = thumbnailUrl
     }
 
 }

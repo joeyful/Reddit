@@ -11,7 +11,7 @@ import Foundation
 
 class RedditService {
 
-    fileprivate let api : API
+    private let api : API
     
     init(api : API) {
         self.api = api

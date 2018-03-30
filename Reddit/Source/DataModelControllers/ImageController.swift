@@ -13,9 +13,9 @@ class ImageController {
     
     static let shared = ImageController()
     
-    fileprivate let loader = ImageLoader()
-    fileprivate let cache = NSCache<NSString, UIImage>()
-    fileprivate let connectionRetryLimit = 8
+    private let loader = ImageLoader()
+    private let cache = NSCache<NSString, UIImage>()
+    private let connectionRetryLimit = 8
     
     private init() {
         
@@ -25,7 +25,7 @@ class ImageController {
         fetch(from: url, retryCount: 0, success: success, error: errorHandler)
     }
     
-    fileprivate func fetch(from url : URL, retryCount: Int, success : @escaping (UIImage) -> Void, error errorHandler : @escaping (String) -> Void) {
+    private func fetch(from url : URL, retryCount: Int, success : @escaping (UIImage) -> Void, error errorHandler : @escaping (String) -> Void) {
         
         let urlString = url.absoluteString as NSString
         
@@ -58,7 +58,7 @@ class ImageController {
         }
     }
     
-    fileprivate func retryTimeInterval(forRetryCount retryCount : Int) -> DispatchTimeInterval {
+    private func retryTimeInterval(forRetryCount retryCount : Int) -> DispatchTimeInterval {
         return .milliseconds(500 * (retryCount ^ 2))
     }
     

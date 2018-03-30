@@ -11,16 +11,15 @@ import Foundation
 final class RedditController {
     let pageSize = 25
 
-    var oldAfter: String?
-    var oldBefore: String?
-    var oldPage = 0
-    var after: String?
-    var before: String?
-    var page = 0
-    var count = 0
-    var direction = Direction.none
-    
+    private(set) var previousAfter: String?
+    private(set) var previousBefore: String?
+    private(set) var previousPage = 0
+    private(set) var after: String?
+    private(set) var before: String?
+    private(set) var page = 0
+    private(set) var direction = Direction.none
     private(set) var list = [Child]()
+    
     var listCount: Int {
         return list.count
     }
@@ -29,12 +28,16 @@ final class RedditController {
     // MARK: - Singleton
     
     static let shared = RedditController()
-
     private let service = RedditService()
-
     private init() {
         
     }
+}
+
+
+// MARK: - Public API
+
+extension RedditController {
     
     func reset() {
         list =  []
@@ -42,27 +45,31 @@ final class RedditController {
         after = nil
     }
     
+    func restore(before: String?, after: String?, page: Int, direction: Direction) {
+        self.page = page
+        self.before = before
+        self.after = after
+        self.direction = direction
+    }
+    
     func loadList(_ direction: Direction, success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
         RedditController.shared.top(direction, success: { result in
             self.list = result.children ?? []
-            self.oldAfter = self.after
-            self.oldBefore = self.before
-            self.oldPage = self.page
+            self.previousAfter = self.after
+            self.previousBefore = self.before
+            self.previousPage = self.page
             self.after = result.after
             self.before = result.before
- 
+            
             self.direction = direction
             switch direction {
             case .none:
                 self.page = 0
-                self.count = 0
-
+                
             case .after:
-                self.count = (self.page + 1) * 25
                 self.page += 1
-
+                
             case .before:
-                self.count = self.page * 25 + 1
                 self.page -= 1
             }
             
@@ -73,9 +80,10 @@ final class RedditController {
     }
 }
 
-// MARK: - API
 
-fileprivate extension RedditController {
+// MARK: - Private Function
+
+private extension RedditController {
     
     func top(_ direction: Direction, success : @escaping  (Top)->Void , error errorCallback : @escaping  (String) -> Void) {
         switch direction {

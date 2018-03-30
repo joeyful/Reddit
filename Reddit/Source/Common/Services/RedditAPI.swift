@@ -12,7 +12,7 @@ class RedditAPI : API  {
     
     let baseURL = URL(string: "https://www.reddit.com")!
     
-    fileprivate var session : URLSession {
+    private var session : URLSession {
         
         let configuration = URLSessionConfiguration.default
         
@@ -28,7 +28,7 @@ class RedditAPI : API  {
         }, error: errorCallback)
     }
     
-    fileprivate func send(_ request: APIRequest, success: @escaping (Data, URL) -> Void, error errorBlock :@escaping (String) -> Void) {
+    private func send(_ request: APIRequest, success: @escaping (Data, URL) -> Void, error errorBlock :@escaping (String) -> Void) {
         
         guard let urlRequest = request.urlRequest(base: baseURL), let fullURL = urlRequest.url else {
             DispatchQueue.main.async {
@@ -56,7 +56,7 @@ class RedditAPI : API  {
         task.resume()
     }
     
-    fileprivate func decode<T : Decodable>(data: Data, url : URL, success : @escaping (T, URL) -> Void, error errorCallback: @escaping (String) -> Void) {
+    private func decode<T : Decodable>(data: Data, url : URL, success : @escaping (T, URL) -> Void, error errorCallback: @escaping (String) -> Void) {
         do {
             
             let result = try JSONDecoder() .decode(T.self, from: data)

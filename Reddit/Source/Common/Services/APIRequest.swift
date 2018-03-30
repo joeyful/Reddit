@@ -43,7 +43,7 @@ struct APIRequest {
         return urlRequest
     }
     
-    fileprivate func encode(parameters: [(String,String)]) -> String {
+    private func encode(parameters: [(String,String)]) -> String {
         
         let parameterStrings : [String] = parameters.flatMap {
             

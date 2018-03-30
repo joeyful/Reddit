@@ -160,7 +160,7 @@
                                             <outlet property="authorLabel" destination="nlI-ZA-Tdd" id="gFe-7b-tdl"/>
                                             <outlet property="byLabel" destination="Fze-2Q-aOm" id="SYP-iq-BPw"/>
                                             <outlet property="dateLabel" destination="flQ-jD-4Yy" id="wVu-2y-19K"/>
-                                            <outlet property="numberOfCountLabel" destination="EMa-4A-u6V" id="7dK-k0-kYf"/>
+                                            <outlet property="numberOfCommentLabel" destination="EMa-4A-u6V" id="WDl-es-8na"/>
                                             <outlet property="thumbnailImageContentView" destination="wiz-c5-hzI" id="C3q-b2-0V7"/>
                                             <outlet property="titleLabel" destination="KgB-tX-9EU" id="0aY-So-LV8"/>
                                         </connections>

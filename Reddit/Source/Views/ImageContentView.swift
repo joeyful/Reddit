@@ -17,16 +17,16 @@ class ImageContentView: UIView {
         }
     }
     
-    fileprivate var image : UIImage? {
+    private var image : UIImage? {
         didSet {
             imageView?.image = image
             imageView?.fadeIn()
         }
     }
     
-    @IBOutlet fileprivate weak var imageView : UIImageView?
+    @IBOutlet private weak var imageView : UIImageView?
     
-    fileprivate func loadImage() {
+    private func loadImage() {
         guard  let url = url else { return }
 
         image = nil
