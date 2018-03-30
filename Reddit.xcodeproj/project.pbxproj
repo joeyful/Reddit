@@ -30,6 +30,8 @@
 		BF355AC9206D7B9C00151E13 /* ImageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AC8206D7B9C00151E13 /* ImageContentView.swift */; };
 		BF355ACB206D7C1700151E13 /* UIView+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ACA206D7C1700151E13 /* UIView+Fade.swift */; };
 		BF355ACD206DD07900151E13 /* Date+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ACC206DD07900151E13 /* Date+Offset.swift */; };
+		BF355AD1206DE16800151E13 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = BF355AD0206DE16800151E13 /* Localizable.stringsdict */; };
+		BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD2206DE35400151E13 /* String+Pluralization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		BF355AC8206D7B9C00151E13 /* ImageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContentView.swift; sourceTree = "<group>"; };
 		BF355ACA206D7C1700151E13 /* UIView+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
 		BF355ACC206DD07900151E13 /* Date+Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Offset.swift"; sourceTree = "<group>"; };
+		BF355AD0206DE16800151E13 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; name = Localizable.stringsdict; path = ../../../Work/Reddit/Reddit/Resources/Localizable.stringsdict; sourceTree = "<group>"; };
+		BF355AD2206DE35400151E13 /* String+Pluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pluralization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 		BF355A97206CC25400151E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF355AD0206DE16800151E13 /* Localizable.stringsdict */,
 				BF355A98206CC25400151E13 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -249,6 +254,7 @@
 				BF355ACA206D7C1700151E13 /* UIView+Fade.swift */,
 				BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */,
 				BF355ACC206DD07900151E13 /* Date+Offset.swift */,
+				BF355AD2206DE35400151E13 /* String+Pluralization.swift */,
 			);
 			path = "Foundation Extension";
 			sourceTree = "<group>";
@@ -369,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF355A99206CC25400151E13 /* Assets.xcassets in Resources */,
+				BF355AD1206DE16800151E13 /* Localizable.stringsdict in Resources */,
 				BF355AAF206CC25C00151E13 /* Main.storyboard in Resources */,
 				BF355AAE206CC25C00151E13 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -405,6 +412,7 @@
 				BF355AC7206D7A0D00151E13 /* ImageController.swift in Sources */,
 				BF355AC0206D5D0900151E13 /* UIView+Shadow.swift in Sources */,
 				BF355AC3206D61E300151E13 /* RedditTopListTableViewCell.swift in Sources */,
+				BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */,
 				BF355AB9206CD6A400151E13 /* Children.swift in Sources */,
 				BF355AB0206CC25C00151E13 /* RedditController.swift in Sources */,
 				BF355AC9206D7B9C00151E13 /* ImageContentView.swift in Sources */,

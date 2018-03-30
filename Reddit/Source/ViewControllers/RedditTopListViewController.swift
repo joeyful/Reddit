@@ -57,8 +57,10 @@ extension RedditTopListViewController: UITableViewDataSource {
                 thumbnailImageContentView.url = child.thumbnail
                 topListCell.titleLabel?.text = child.title
                 topListCell.authorLabel?.text = child.author
+                
                 let numComments = child.numComments ?? 0
-                topListCell.numberOfCountLabel?.text = "\(numComments) comments"
+                topListCell.numberOfCountLabel?.text = "number_of_comments".pluralize(value: numComments)
+                
                 let createdUTC = child.createdUTC ?? Date()
                 topListCell.dateLabel?.text = "\(Date().offsetFrom(createdUTC)) ago"
             }

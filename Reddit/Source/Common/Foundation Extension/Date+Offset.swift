@@ -15,10 +15,10 @@ extension Date {
         let dayHourMinuteSecond: Set<Calendar.Component> = [.day, .hour, .minute, .second]
         let difference = NSCalendar.current.dateComponents(dayHourMinuteSecond, from: date, to: self);
         
-        let seconds = "\(difference.second ?? 0) seconds"
-        let minutes = "\(difference.minute ?? 0) minutes"
-        let hours = "\(difference.hour ?? 0) hours"
-        let days = "\(difference.day ?? 0) days"
+        let seconds = "number_of_seconds".pluralize(value: difference.second ?? 0)
+        let minutes = "number_of_minutes".pluralize(value: difference.minute ?? 0)
+        let hours = "number_of_hours".pluralize(value: difference.hour ?? 0)
+        let days = "number_of_days".pluralize(value: difference.day ?? 0)
         
         if let day = difference.day, day          > 0 { return days }
         if let hour = difference.hour, hour       > 0 { return hours }
