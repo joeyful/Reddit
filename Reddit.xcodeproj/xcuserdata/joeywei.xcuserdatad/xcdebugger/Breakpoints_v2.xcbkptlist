@@ -9,46 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Reddit/Source/DataModelControllers/RedditController.swift"
-            timestampString = "544086870.8423409"
+            filePath = "Reddit/Source/ViewControllers/RedditTopListViewController.swift"
+            timestampString = "544088883.001923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "loadList(success:error:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Reddit.RedditController.loadList(success: () -&gt; (), error: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Reddit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joeywei/Desktop/Reddit/Reddit/Source/DataModelControllers/RedditController.swift"
-                  timestampString = "544086870.9728481"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Reddit.Top) -&gt; () in Reddit.RedditController.loadList(success: () -&gt; (), error: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Reddit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joeywei/Desktop/Reddit/Reddit/Source/DataModelControllers/RedditController.swift"
-                  timestampString = "544086870.976549"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +26,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reddit/Source/ViewControllers/RedditTopListViewController.swift"
-            timestampString = "544086870.842793"
+            timestampString = "544088883.00244"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reddit/Source/ViewControllers/RedditTopListViewController.swift"
+            timestampString = "544088883.002655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
