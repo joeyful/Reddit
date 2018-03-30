@@ -19,10 +19,8 @@ class RedditTopListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.estimatedRowHeight = 200
-        
-        loadTopRedditList()
+        tableView?.autoSize()
+        loadList()
     }
 }
 
@@ -30,7 +28,8 @@ class RedditTopListViewController: UIViewController {
 // MARK: - Helper
 
 fileprivate extension RedditTopListViewController {
-    func loadTopRedditList() {
+    
+    func loadList() {
         RedditController.shared.loadTopList(success: {
                 self.tableView?.reloadData()
         }, error: { error in
@@ -51,22 +50,25 @@ extension RedditTopListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RedditTopListTableViewCell")
-        if let topListCell = cell as? RedditTopListTableViewCell, let thumbnailImageContentView = topListCell.thumbnailImageContentView {
-            if let list = RedditController.shared.topList {
-                let child = list[indexPath.row]
-                thumbnailImageContentView.url = child.thumbnail
-                topListCell.titleLabel?.text = child.title
-                topListCell.authorLabel?.text = child.author
-                
-                let numComments = child.numComments ?? 0
-                topListCell.numberOfCountLabel?.text = "number_of_comments".pluralize(value: numComments)
-                
-                let createdUTC = child.createdUTC ?? Date()
-                topListCell.dateLabel?.text = "\(Date().offsetFrom(createdUTC)) ago"
-            }
+        if let topListCell = cell as? RedditTopListTableViewCell,
+           let list = RedditController.shared.topList, indexPath.row < list.count {
+                populate(topListCell, with: list[indexPath.row])
         }
         
         return cell!
+    }
+    
+    fileprivate func populate(_ cell: RedditTopListTableViewCell, with child: Child) {
+        
+        cell.titleLabel?.text = child.title
+        cell.authorLabel?.text = child.author
+        cell.thumbnailImageContentView?.url = child.thumbnail
+        
+        let numComments = child.numComments ?? 0
+        cell.numberOfCountLabel?.text = "number_of_comments".pluralize(value: numComments)
+        
+        let createdUTC = child.createdUTC ?? Date()
+        cell.dateLabel?.text = "\(Date().offsetFrom(createdUTC)) ago"
     }
 }
 

@@ -39,8 +39,8 @@ class ImageController {
             
             loader.load(from: url, success: { (image) in
                 
+                self.cache.setObject(image, forKey: urlString)
                 DispatchQueue.main.async {
-                    self.cache.setObject(image, forKey: urlString)
                     success(image)
                 }
             }, error: { (error) in

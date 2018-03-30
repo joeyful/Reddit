@@ -32,6 +32,7 @@
 		BF355ACD206DD07900151E13 /* Date+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ACC206DD07900151E13 /* Date+Offset.swift */; };
 		BF355AD1206DE16800151E13 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = BF355AD0206DE16800151E13 /* Localizable.stringsdict */; };
 		BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD2206DE35400151E13 /* String+Pluralization.swift */; };
+		BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		BF355ACC206DD07900151E13 /* Date+Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Offset.swift"; sourceTree = "<group>"; };
 		BF355AD0206DE16800151E13 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; name = Localizable.stringsdict; path = ../../../Work/Reddit/Reddit/Resources/Localizable.stringsdict; sourceTree = "<group>"; };
 		BF355AD2206DE35400151E13 /* String+Pluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pluralization.swift"; sourceTree = "<group>"; };
+		BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+AutoSize.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 				BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */,
 				BF355ACC206DD07900151E13 /* Date+Offset.swift */,
 				BF355AD2206DE35400151E13 /* String+Pluralization.swift */,
+				BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */,
 			);
 			path = "Foundation Extension";
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */,
 				BF355AB9206CD6A400151E13 /* Children.swift in Sources */,
 				BF355AB0206CC25C00151E13 /* RedditController.swift in Sources */,
+				BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */,
 				BF355AC9206D7B9C00151E13 /* ImageContentView.swift in Sources */,
 				BF355AB5206CC25C00151E13 /* RedditTopListViewController.swift in Sources */,
 				BF355AB3206CC25C00151E13 /* AppDelegate.swift in Sources */,
