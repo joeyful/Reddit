@@ -32,7 +32,7 @@ struct APIRequest {
         let pathWithParameters = queryParmeters.isEmpty ? relativePath : relativePath + "?" + queryParmeters
         
         guard let fullURL = URL(string: pathWithParameters, relativeTo: baseURL) else { return nil }
-        
+//        print("\(fullURL.absoluteString)")
         var urlRequest = URLRequest(url: fullURL)
         urlRequest.httpMethod = verb.rawValue
         

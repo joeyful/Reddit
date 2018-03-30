@@ -21,12 +21,15 @@ class RedditService {
         self.init(api: RedditAPI())
     }
     
-    func top(after: String?, count: String, responseQueue: DispatchQueue, success: @escaping (Top) -> Void, error errorCallback: @escaping (String) -> Void) {
+    func top(after: String?, before: String?, count: Int, responseQueue: DispatchQueue, success: @escaping (Top) -> Void, error errorCallback: @escaping (String) -> Void) {
         
-        var request = APIRequest(.post, path: "top.json")
+        var request = APIRequest(.get, path: "top.json")
         
         if let after = after {
-            request.parameters = request.parameters + [("after", after), ("count", count)]
+            request.parameters = request.parameters + [("after", after), ("count", "\(count)")]
+        }
+        else if let before = before {
+            request.parameters = request.parameters + [("before", before), ("count", "\(count)")]
         }
         
         api.send(request, success: { (result, url) in

@@ -9,11 +9,18 @@
 import Foundation
 
 final class RedditController {
-    
-    private var after: String?
+    let pageSize = 25
 
-    private(set) var list = [Child]()
+    var oldAfter: String?
+    var oldBefore: String?
+    var oldPage = 0
+    var after: String?
+    var before: String?
+    var page = 0
+    var count = 0
+    var direction = Direction.none
     
+    private(set) var list = [Child]()
     var listCount: Int {
         return list.count
     }
@@ -31,13 +38,34 @@ final class RedditController {
     
     func reset() {
         list =  []
+        before = nil
         after = nil
     }
     
-    func loadList(success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
-        RedditController.shared.top(success: { result in
-            self.list += result.children ?? []
+    func loadList(_ direction: Direction, success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
+        RedditController.shared.top(direction, success: { result in
+            self.list = result.children ?? []
+            self.oldAfter = self.after
+            self.oldBefore = self.before
+            self.oldPage = self.page
             self.after = result.after
+            self.before = result.before
+ 
+            self.direction = direction
+            switch direction {
+            case .none:
+                self.page = 0
+                self.count = 0
+
+            case .after:
+                self.count = (self.page + 1) * 25
+                self.page += 1
+
+            case .before:
+                self.count = self.page * 25 + 1
+                self.page -= 1
+            }
+            
             success()
         }, error: { error in
             errorHandle(error)
@@ -49,7 +77,16 @@ final class RedditController {
 
 fileprivate extension RedditController {
     
-    func top(success : @escaping  (Top)->Void , error errorCallback : @escaping  (String) -> Void) {
-        service.top(after: after, count: "\(listCount)", responseQueue: .main, success: success, error: errorCallback)
+    func top(_ direction: Direction, success : @escaping  (Top)->Void , error errorCallback : @escaping  (String) -> Void) {
+        switch direction {
+        case .none:
+            service.top(after: nil, before: nil, count: 0, responseQueue: .main, success: success, error: errorCallback)
+
+        case .after:
+            service.top(after: after, before: nil, count: (page + 1) * 25, responseQueue: .main, success: success, error: errorCallback)
+
+        case .before:
+            service.top(after: nil, before: before, count: page * 25 + 1, responseQueue: .main, success: success, error: errorCallback)
+        }
     }
 }

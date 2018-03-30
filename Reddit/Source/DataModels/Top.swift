@@ -11,6 +11,7 @@ import Foundation
 struct Top : Codable {
     
     let after : String?
+    let before : String?
     let children : [Child]?
     
     enum CodingKeys: String, CodingKey {
@@ -19,6 +20,7 @@ struct Top : Codable {
     
     enum TopKeys: String, CodingKey {
         case after
+        case before
         case children
     }
     
@@ -27,6 +29,7 @@ struct Top : Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let data = try container.nestedContainer(keyedBy: TopKeys.self, forKey: .data)
         after = try data.decodeIfPresent(String.self, forKey: .after)
+        before = try data.decodeIfPresent(String.self, forKey: .before)
         children = try data.decodeIfPresent([Child].self, forKey: .children)
     }
     
@@ -34,6 +37,7 @@ struct Top : Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         var data = container.nestedContainer(keyedBy: TopKeys.self, forKey: .data)
         try data.encodeIfPresent(after, forKey: .after)
+        try data.encodeIfPresent(before, forKey: .before)
         try data.encodeIfPresent(children, forKey: .children)
     }
 }
