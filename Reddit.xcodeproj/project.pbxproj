@@ -33,6 +33,7 @@
 		BF355AD1206DE16800151E13 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = BF355AD0206DE16800151E13 /* Localizable.stringsdict */; };
 		BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD2206DE35400151E13 /* String+Pluralization.swift */; };
 		BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */; };
+		BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		BF355AD0206DE16800151E13 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; name = Localizable.stringsdict; path = ../../../Work/Reddit/Reddit/Resources/Localizable.stringsdict; sourceTree = "<group>"; };
 		BF355AD2206DE35400151E13 /* String+Pluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pluralization.swift"; sourceTree = "<group>"; };
 		BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+AutoSize.swift"; sourceTree = "<group>"; };
+		BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PercentageEncoding.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,12 +254,13 @@
 		BF355ABA206CD94B00151E13 /* Foundation Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BF355ACC206DD07900151E13 /* Date+Offset.swift */,
+				BF355AD2206DE35400151E13 /* String+Pluralization.swift */,
+				BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */,
+				BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */,
 				BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */,
 				BF355ACA206D7C1700151E13 /* UIView+Fade.swift */,
 				BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */,
-				BF355ACC206DD07900151E13 /* Date+Offset.swift */,
-				BF355AD2206DE35400151E13 /* String+Pluralization.swift */,
-				BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */,
 			);
 			path = "Foundation Extension";
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				BF355ACB206D7C1700151E13 /* UIView+Fade.swift in Sources */,
 				BF355AC5206D78F100151E13 /* ImageLoader.swift in Sources */,
 				BF355AB7206CC4CD00151E13 /* RedditAPI.swift in Sources */,
+				BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */,
 				BF355ABC206CD97500151E13 /* UIViewController+presentAlert.swift in Sources */,
 				BF355ACD206DD07900151E13 /* Date+Offset.swift in Sources */,
 				BF355AAD206CC25C00151E13 /* Top.swift in Sources */,
