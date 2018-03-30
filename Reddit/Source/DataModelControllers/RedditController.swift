@@ -29,6 +29,11 @@ final class RedditController {
         
     }
     
+    func reset() {
+        list =  []
+        after = nil
+    }
+    
     func loadList(success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
         RedditController.shared.top(success: { result in
             self.list += result.children ?? []
@@ -42,9 +47,9 @@ final class RedditController {
 
 // MARK: - API
 
-extension RedditController {
+fileprivate extension RedditController {
+    
     func top(success : @escaping  (Top)->Void , error errorCallback : @escaping  (String) -> Void) {
         service.top(after: after, count: "\(listCount)", responseQueue: .main, success: success, error: errorCallback)
-        
     }
 }

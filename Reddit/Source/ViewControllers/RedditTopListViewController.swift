@@ -10,6 +10,8 @@ import UIKit
 
 class RedditTopListViewController: UIViewController {
 
+    fileprivate let refreshControl = UIRefreshControl()
+
     // MARK: - Outlets
 
     @IBOutlet fileprivate weak var tableView : UITableView?
@@ -21,6 +23,7 @@ class RedditTopListViewController: UIViewController {
         
         tableView?.autoSize()
         tableView?.prefetchDataSource = self
+        addRefreshControl()
         loadList()
     }
 }
@@ -30,9 +33,24 @@ class RedditTopListViewController: UIViewController {
 
 fileprivate extension RedditTopListViewController {
     
+    @objc func refresh() {
+        RedditController.shared.reset()
+        loadList()
+    }
+    
+    func addRefreshControl() {
+        let title = NSLocalizedString("Pull To Refresh", comment: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: title)
+        refreshControl.addTarget(self,
+                                 action: #selector(refresh),
+                                 for: .valueChanged)
+        tableView?.refreshControl = refreshControl
+    }
+    
     func loadList() {
         RedditController.shared.loadList(success: {
                 self.tableView?.reloadData()
+                self.refreshControl.endRefreshing()
         }, error: { error in
                 self.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
         })
@@ -79,7 +97,7 @@ extension RedditTopListViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         let listCount = RedditController.shared.listCount
-        let needsFetch = indexPaths.contains { $0.row >= listCount - 1 }
+        let needsFetch = indexPaths.contains { $0.row >= listCount - 1 } && listCount > 0
         guard needsFetch else { return }
         
         loadList()
