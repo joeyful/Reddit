@@ -94,8 +94,21 @@ extension RedditDetailViewController {
     }
     
     @IBAction func save(_ sender: Any) {
-        // save image to photo library
-        // in a group named Reddit
+        guard let image = imageContentView?.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saved(_:with:contextInfo:)), nil)
+    }
+    
+    
+    //MARK: - Store Photo
+    
+    @objc func saved(_ image: UIImage, with error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            presentAlert(title: NSLocalizedString("Error!", comment: "Error!"),
+                         message: error.localizedDescription)
+        } else {
+            presentAlert(title: NSLocalizedString("Saved!", comment: "Saved!"),
+                       message: NSLocalizedString("Your image has been saved to photo album.", comment: "photo saved message"))
+        }
     }
 }
 

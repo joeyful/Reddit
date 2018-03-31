@@ -25,7 +25,7 @@ class ImageContentView: UIView {
         }
     }
     
-    private var image : UIImage? {
+    var image : UIImage? {
         didSet {
             imageView?.image = image
             imageView?.fadeIn()
