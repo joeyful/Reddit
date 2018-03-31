@@ -42,6 +42,24 @@ class RedditTopListViewController: UIViewController {
         }
         redditController.restore(before: before, after: after, page: page, direction: direction)
         loadList(direction)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UserDefaults.standard.bool(forKey: "isDetailViewVisible") == true {
+            
+            if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
+                guard let url = UserDefaults.standard.url(forKey: "url"),
+                    let thumbnail = UserDefaults.standard.url(forKey: "thumbnail") else { return }
+                
+                redditDetailViewController.url = url
+                redditDetailViewController.thumbnail = thumbnail
+                redditDetailViewController.modalTransitionStyle = .crossDissolve
+                present(redditDetailViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     // MARK: - State Restoration

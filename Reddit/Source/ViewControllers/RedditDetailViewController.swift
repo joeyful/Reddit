@@ -42,6 +42,13 @@ class RedditDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUserInterface()
+        UserDefaults.standard.set(thumbnail, forKey: "thumbnail")
+        UserDefaults.standard.set(url, forKey: "url")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserDefaults.standard.set(true, forKey: "isDetailViewVisible")
     }
     
     // MARK: - State Restoration
@@ -84,6 +91,7 @@ private extension RedditDetailViewController {
 private extension RedditDetailViewController {
     
     @IBAction func cancel(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "isDetailViewVisible")
         dismiss(animated: true)
     }
     
