@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RedditTopListTableViewCellDelegate: class {
-    func didSelectTopListCell(_ cell: RedditTopListTableViewCell)
+    func selectedThumbnail(on cell: RedditTopListTableViewCell)
 }
 
 class RedditTopListTableViewCell: UITableViewCell {
@@ -17,6 +17,8 @@ class RedditTopListTableViewCell: UITableViewCell {
     var child: Child?
     weak var delegate : RedditTopListTableViewCellDelegate?
     
+    // MARK: - Outlets
+
     @IBOutlet weak var titleLabel           : UILabel?
     @IBOutlet weak var authorLabel          : UILabel?
     @IBOutlet weak var byLabel              : UILabel?
@@ -24,17 +26,15 @@ class RedditTopListTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel            : UILabel?
     @IBOutlet weak var thumbnailImageContentView   : ImageContentView?
 
+    // MARK: - Life Cycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         byLabel?.text = NSLocalizedString("by", comment: "by")
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    // MARK: - Pubilc Function
+
     func configure(title: String?, author: String?, numberOfComment: String?, date: String?, thumbnailUrl: URL?) {
         titleLabel?.text = title
         authorLabel?.text = author
@@ -43,13 +43,10 @@ class RedditTopListTableViewCell: UITableViewCell {
         thumbnailImageContentView?.url = thumbnailUrl
     }
 
-}
+    // MARK: - Action
 
-// MARK: - Action
-
-extension RedditTopListTableViewCell {
     @IBAction func detail(_ button: UIButton) {
         guard "default" != child?.thumbnail?.absoluteString else { return }
-        delegate?.didSelectTopListCell(self)
+        delegate?.selectedThumbnail(on: self)
     }
 }

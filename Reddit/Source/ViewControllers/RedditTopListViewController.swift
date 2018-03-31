@@ -10,11 +10,10 @@ import UIKit
 
 enum Direction: String { case after = "after", before = "before", none = "none" }
 
-
 class RedditTopListViewController: UIViewController {
 
-    var index: IndexPath?
-    
+    private var offsetIndexPath: IndexPath?
+    private var isOffsetAdjustmentNeeded = false
     private let refreshControl = UIRefreshControl()
     private let redditController = RedditController.shared
 
@@ -22,7 +21,6 @@ class RedditTopListViewController: UIViewController {
     
     @IBOutlet private weak var previousButton   : UIButton?
     @IBOutlet private weak var nextButton       : UIButton?
-
     @IBOutlet private weak var tableView        : UITableView?
     @IBOutlet private weak var loadingGuardView : UIView?
 
@@ -48,8 +46,8 @@ class RedditTopListViewController: UIViewController {
         coder.encode(redditController.previousBefore, forKey: "before")
         coder.encode(redditController.direction.rawValue, forKey: "direction")
 
-        if let index = tableView?.indexPathsForVisibleRows?.first {
-            coder.encode(index, forKey: "index")
+        if let indexPath = tableView?.indexPathsForVisibleRows?.first {
+            coder.encode(indexPath, forKey: "offsetIndexPath")
         }
         
         super.encodeRestorableState(with: coder)
@@ -67,8 +65,8 @@ class RedditTopListViewController: UIViewController {
         }
         redditController.restore(before: before, after: after, page: page, direction: direction)
 
-        index = coder.decodeObject(forKey: "index") as? IndexPath
-
+        offsetIndexPath = coder.decodeObject(forKey: "offsetIndexPath") as? IndexPath
+        isOffsetAdjustmentNeeded = true
         super.decodeRestorableState(with: coder)
     }
     
@@ -140,13 +138,15 @@ extension RedditTopListViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RedditTopListTableViewCell")
         let list = redditController.list
+        
         if let topListCell = cell as? RedditTopListTableViewCell, indexPath.row < list.count {
             let child = list[indexPath.row]
             populate(topListCell, with: child)
         }
         
-        if indexPath.row == tableView.numberOfRows(inSection: 0) {
-            tableView.scrollToRow(at: index!, at: .top, animated: true)
+        if isOffsetAdjustmentNeeded == true, indexPath.row == 0, let offsetIndexPath = offsetIndexPath {
+            tableView.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
+            isOffsetAdjustmentNeeded = false
         }
         
         return cell!
@@ -158,17 +158,21 @@ extension RedditTopListViewController: UITableViewDataSource {
         let numberOfComment = "number_of_comments".pluralize(value: count)
         let createdUTC = child.createdUTC ?? Date()
         let date = "\(Date().offsetFrom(createdUTC))" + NSLocalizedString("ago", comment: "ago")
-        cell.configure(title: child.title, author: child.author, numberOfComment: numberOfComment, date: date, thumbnailUrl: child.thumbnail)
         
         cell.delegate = self
         cell.child = child
+        cell.configure(title: child.title, author: child.author, numberOfComment: numberOfComment, date: date, thumbnailUrl: child.thumbnail)
+    }
+    
+    private func adjustContentOffset() {
+        
     }
 }
 
 // MARK: - RedditTopListTableViewCellDelegate
 
 extension RedditTopListViewController: RedditTopListTableViewCellDelegate {
-    func didSelectTopListCell(_ cell: RedditTopListTableViewCell) {
+    func selectedThumbnail(on cell: RedditTopListTableViewCell) {
         
         if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
             guard let url = cell.child?.image?.url, let thumbnail = cell.child?.thumbnail else { return }

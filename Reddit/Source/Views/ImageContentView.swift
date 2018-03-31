@@ -10,7 +10,6 @@ import UIKit
 
 protocol ImageContentViewDelegate: class {
     func imageLoaded(_ image: UIImage)
-    
     func failLoading(_ error: String)
 }
 
@@ -27,16 +26,25 @@ class ImageContentView: UIView {
     
     var image : UIImage? {
         didSet {
+            guard image != oldValue else { return }
             imageView?.image = image
             imageView?.fadeIn()
         }
     }
-    
+
+    // MARK: - Outlets
+
     @IBOutlet private weak var imageView : UIImageView?
+}
+
+
+// MARK: - Private Function
+
+private extension ImageContentView {
     
     private func loadImage() {
         guard  let url = url else { return }
-
+        
         image = nil
         ImageController.shared.fetch(from: url, success: { [weak self] (image) in
             self?.image = image
@@ -45,5 +53,4 @@ class ImageContentView: UIView {
             self?.delegate?.failLoading(error)
         }
     }
-
 }

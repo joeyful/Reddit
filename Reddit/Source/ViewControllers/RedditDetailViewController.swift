@@ -19,7 +19,7 @@ class RedditDetailViewController: UIViewController {
         }
     }
     
-    private var isThumbnailLoaded = false
+    private var triedLoadingThumbnail = false
 
     // MARK: - Outlets
 
@@ -59,15 +59,10 @@ class RedditDetailViewController: UIViewController {
         
         let thumbnail = coder.decodeObject(forKey: "thumbnail") as? URL
         let url = coder.decodeObject(forKey: "url") as? URL
-
         self.url = url
         self.thumbnail = thumbnail
-        super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-
         
+        super.decodeRestorableState(with: coder)
     }
 }
 
@@ -84,10 +79,9 @@ private extension RedditDetailViewController {
     }
 }
 
-
 // MARK: - Action
 
-extension RedditDetailViewController {
+private extension RedditDetailViewController {
     
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true)
@@ -95,11 +89,17 @@ extension RedditDetailViewController {
     
     @IBAction func save(_ sender: Any) {
         guard let image = imageContentView?.image else { return }
+        save(image)
+    }
+}
+
+// MARK: - Store Photo
+
+private extension RedditDetailViewController {
+    
+    func save(_ image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saved(_:with:contextInfo:)), nil)
     }
-    
-    
-    //MARK: - Store Photo
     
     @objc func saved(_ image: UIImage, with error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
@@ -107,19 +107,18 @@ extension RedditDetailViewController {
                          message: error.localizedDescription)
         } else {
             presentAlert(title: NSLocalizedString("Saved!", comment: "Saved!"),
-                       message: NSLocalizedString("Your image has been saved to photo album.", comment: "photo saved message"))
+                         message: NSLocalizedString("Your image has been saved to photo album.", comment: "photo saved message"))
         }
     }
 }
-
 
 // MARK: - ImageContentViewDelegate
 
 extension RedditDetailViewController: ImageContentViewDelegate {
     
     func failLoading(_ error: String) {
-        if isThumbnailLoaded == false {
-            isThumbnailLoaded = true
+        if triedLoadingThumbnail == false {
+            triedLoadingThumbnail = true
             imageContentView?.url = thumbnail
         }
         else {

@@ -33,7 +33,6 @@ struct Child : Codable {
     init(from decoder : Decoder) throws {
         
         let container = try decoder.container(keyedBy: DataKeys.self)
-        
         let data = try container.nestedContainer(keyedBy: ChildKeys.self, forKey: .data)
         title = try data.decodeIfPresent(String.self, forKey: .title)
         author = try data.decodeIfPresent(String.self, forKey: .author)

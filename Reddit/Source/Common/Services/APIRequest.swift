@@ -45,7 +45,7 @@ struct APIRequest {
     
     private func encode(parameters: [(String,String)]) -> String {
         
-        let parameterStrings : [String] = parameters.flatMap {
+        let parameterStrings : [String] = parameters.compactMap {
             
             guard let key = $0.0.addingQueryParameterPercentEncoding, let value = $0.1.addingQueryParameterPercentEncoding else { return nil }
             

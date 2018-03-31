@@ -11,12 +11,14 @@ import Foundation
 final class RedditController {
     let pageSize = 25
 
-    private(set) var previousAfter: String?
-    private(set) var previousBefore: String?
+    private(set) var previousAfter  : String?
+    private(set) var previousBefore : String?
     private(set) var previousPage = 0
-    private(set) var after: String?
-    private(set) var before: String?
+    
+    private(set) var after          : String?
+    private(set) var before         : String?
     private(set) var page = 0
+    
     private(set) var direction = Direction.none
     private(set) var list = [Child]()
     
