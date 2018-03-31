@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reddit/Source/Common/Services/APIRequest.swift"
-            timestampString = "544231146.212027"
+            timestampString = "544241200.384596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reddit/Source/ViewControllers/RedditDetailViewController.swift"
-            timestampString = "544231065.32795"
+            timestampString = "544236821.155706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -42,13 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reddit/Source/ViewControllers/RedditTopListViewController.swift"
-            timestampString = "544231146.212122"
+            timestampString = "544240885.698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "loadList(with:)"
-            landmarkType = "7">
+            startingLineNumber = "214"
+            endingLineNumber = "214">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -12,6 +12,7 @@ enum Direction: String { case after = "after", before = "before", none = "none" 
 
 class RedditTopListViewController: UIViewController {
 
+
     private var offsetIndexPath: IndexPath?
     private let refreshControl = UIRefreshControl()
     private let redditController = RedditController.shared
@@ -22,6 +23,7 @@ class RedditTopListViewController: UIViewController {
     @IBOutlet private weak var nextButton       : UIButton?
     @IBOutlet private weak var tableView        : UITableView?
     @IBOutlet private weak var loadingGuardView : UIView?
+    @IBOutlet private weak var segmentControl   : UISegmentedControl?
 
     // MARK: - Life Cycle
 
@@ -49,7 +51,8 @@ class RedditTopListViewController: UIViewController {
         coder.encode(redditController.previousAfter, forKey: "after")
         coder.encode(redditController.previousBefore, forKey: "before")
         coder.encode(redditController.direction.rawValue, forKey: "direction")
-
+        coder.encode(segmentControl?.selectedSegmentIndex, forKey: "selectedSegmentIndex")
+        
         if let indexPath = tableView?.indexPathsForVisibleRows?.first {
             coder.encode(indexPath.row, forKey: "row")
             UserDefaults.standard.set(indexPath.row, forKey: "row")
@@ -78,6 +81,11 @@ extension RedditTopListViewController {
     @IBAction func next(_ sender: Any) {
         loadList(with: .after)
     }
+    
+    @IBAction func valueChanged(_ sender: UISegmentedControl) {
+        UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "selectedSegmentIndex")
+        loadList()
+    }
 }
 
 // MARK: - Helper
@@ -101,15 +109,16 @@ private extension RedditTopListViewController {
         nextButton?.setTitle(NSLocalizedString("Next", comment: "next"), for: .normal)
         addRefreshControl()
         tableView?.autoSize()
+        segmentControl?.setTitle(NSLocalizedString("Top 50", comment: "Top 50"), forSegmentAt: 0)
+        segmentControl?.setTitle(NSLocalizedString("No Limit", comment: "No Limit"), forSegmentAt: 1)
+        segmentControl?.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "selectedSegmentIndex")
     }
     
     func loadList(with direction: Direction = .none) {
         loadingGuardView?.fadeIn()
         refreshControl.endRefreshing()
         redditController.loadList(direction, success: { [weak self] in
-            self?.tableView?.reloadData()
-            self?.previousButton?.isHidden = self?.redditController.before == nil ? true : false
-            
+            self?.updateUserInterface()
             if let offsetIndexPath = self?.offsetIndexPath, self?.tableView?.numberOfRows(inSection: 0) ?? 0 > 0 {
                 self?.offsetIndexPath = nil
                 self?.tableView?.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
@@ -120,6 +129,12 @@ private extension RedditTopListViewController {
             self?.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
             self?.loadingGuardView?.fadeOut()
         })
+    }
+    
+    func updateUserInterface() {
+        tableView?.reloadData()
+        previousButton?.isHidden = (redditController.before == nil) ? true : false
+        nextButton?.isHidden = (redditController.before != nil && segmentControl?.selectedSegmentIndex == 0) ? true : false
     }
     
     func restoreDetailViewIfNeeded() {

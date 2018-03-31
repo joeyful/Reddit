@@ -12,7 +12,7 @@ import Foundation
 class RedditService {
 
     private let api : API
-    private let connectionRetryLimit = 3
+    private let connectionRetryLimit = 2
 
     init(api : API) {
         self.api = api
