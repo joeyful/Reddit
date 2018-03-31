@@ -159,7 +159,10 @@ extension RedditTopListViewController: RedditTopListTableViewCellDelegate {
     func didSelectTopListCell(_ cell: RedditTopListTableViewCell) {
         
         if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
-            redditDetailViewController.child = cell.child
+            guard let url = cell.child?.image?.url, let thumbnail = cell.child?.thumbnail else { return }
+            
+            redditDetailViewController.url = url
+            redditDetailViewController.thumbnail = thumbnail
             redditDetailViewController.modalTransitionStyle = .crossDissolve
             present(redditDetailViewController, animated: true, completion: nil)
         }

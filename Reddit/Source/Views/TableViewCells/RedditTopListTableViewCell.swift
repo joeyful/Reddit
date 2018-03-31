@@ -49,6 +49,7 @@ class RedditTopListTableViewCell: UITableViewCell {
 
 extension RedditTopListTableViewCell {
     @IBAction func detail(_ button: UIButton) {
+        guard "default" != child?.thumbnail?.absoluteString else { return }
         delegate?.didSelectTopListCell(self)
     }
 }

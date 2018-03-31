@@ -10,7 +10,15 @@ import UIKit
 
 class RedditDetailViewController: UIViewController {
 
-    var child: Child?
+    var thumbnail: URL?
+
+    var url: URL? {
+        didSet {
+            imageContentView?.url = url
+            imageContentView?.delegate = self
+        }
+    }
+    
     private var isThumbnailLoaded = false
 
     // MARK: - Outlets
@@ -35,6 +43,32 @@ class RedditDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUserInterface()
     }
+    
+    // MARK: - State Restoration
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        guard let thumbnail = thumbnail, let url = url else { return }
+        coder.encode(thumbnail, forKey: "thumbnail")
+        coder.encode(url, forKey: "url")
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        
+        let thumbnail = coder.decodeObject(forKey: "thumbnail") as? URL
+        let url = coder.decodeObject(forKey: "url") as? URL
+
+        self.url = url
+        self.thumbnail = thumbnail
+        super.decodeRestorableState(with: coder)
+    }
+    
+    override func applicationFinishedRestoringState() {
+
+        
+    }
 }
 
 
@@ -45,7 +79,7 @@ private extension RedditDetailViewController {
     func setupUserInterface() {
         saveButton?.setTitle(NSLocalizedString("Save", comment: "Save"), for: .normal)
         cancelButton?.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-        imageContentView?.url = child?.image?.url
+        imageContentView?.url = url
         imageContentView?.delegate = self
     }
 }
@@ -73,7 +107,7 @@ extension RedditDetailViewController: ImageContentViewDelegate {
     func failLoading(_ error: String) {
         if isThumbnailLoaded == false {
             isThumbnailLoaded = true
-            imageContentView?.url = child?.thumbnail
+            imageContentView?.url = thumbnail
         }
         else {
             presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
