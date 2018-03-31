@@ -29,37 +29,16 @@ class RedditTopListViewController: UIViewController {
         super.viewDidLoad()
 
         setupUserInterface()
+        restoreRedditController()
         
-        let page = UserDefaults.standard.integer(forKey: "page")
-        let after = UserDefaults.standard.string(forKey: "after")
-        let before = UserDefaults.standard.string(forKey: "before")
-        let row = UserDefaults.standard.integer(forKey: "row")
-        offsetIndexPath = IndexPath(row: row, section: 0)
-
-        var direction = Direction.none
-        if let rawValue = UserDefaults.standard.string(forKey: "direction") {
-            direction = Direction(rawValue: rawValue) ?? .none
-        }
-        redditController.restore(before: before, after: after, page: page, direction: direction)
-        loadList(direction)
+        let direction = Direction(rawValue: UserDefaults.standard.string(forKey: "direction") ?? "none") ?? .none
+        loadList(with: direction)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if UserDefaults.standard.bool(forKey: "isDetailViewVisible") == true {
-            
-            if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
-                guard let url = UserDefaults.standard.url(forKey: "url"),
-                    let thumbnail = UserDefaults.standard.url(forKey: "thumbnail") else { return }
-                
-                redditDetailViewController.url = url
-                redditDetailViewController.thumbnail = thumbnail
-                redditDetailViewController.modalTransitionStyle = .crossDissolve
-                present(redditDetailViewController, animated: true, completion: nil)
-            }
-        }
+        restoreDetailViewIfNeeded()
     }
     
     // MARK: - State Restoration
@@ -93,11 +72,11 @@ class RedditTopListViewController: UIViewController {
 
 extension RedditTopListViewController {
     @IBAction func previous(_ sender: Any) {
-        loadList(.before)
+        loadList(with: .before)
     }
     
     @IBAction func next(_ sender: Any) {
-        loadList(.after)
+        loadList(with: .after)
     }
 }
 
@@ -107,7 +86,7 @@ private extension RedditTopListViewController {
     
     @objc func refresh() {
         redditController.reset()
-        loadList(.none)
+        loadList()
     }
     
     func addRefreshControl() {
@@ -124,17 +103,50 @@ private extension RedditTopListViewController {
         tableView?.autoSize()
     }
     
-    func loadList(_ direction: Direction) {
+    func loadList(with direction: Direction = .none) {
         loadingGuardView?.fadeIn()
         refreshControl.endRefreshing()
         redditController.loadList(direction, success: { [weak self] in
             self?.tableView?.reloadData()
             self?.previousButton?.isHidden = self?.redditController.before == nil ? true : false
+            
+            if let offsetIndexPath = self?.offsetIndexPath, self?.tableView?.numberOfRows(inSection: 0) ?? 0 > 0 {
+                self?.offsetIndexPath = nil
+                self?.tableView?.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
+            }
+            
             self?.loadingGuardView?.fadeOut()
         }, error: { [weak self] error in
             self?.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
             self?.loadingGuardView?.fadeOut()
         })
+    }
+    
+    func restoreDetailViewIfNeeded() {
+        guard let url = UserDefaults.standard.url(forKey: "url"),
+            let thumbnail = UserDefaults.standard.url(forKey: "thumbnail"),
+            UserDefaults.standard.bool(forKey: "isDetailViewVisible") == true else { return }
+        
+        presentDetailView(url: url, thumbnail: thumbnail)
+    }
+    
+    func presentDetailView(url: URL, thumbnail: URL) {
+        if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
+            redditDetailViewController.url = url
+            redditDetailViewController.thumbnail = thumbnail
+            redditDetailViewController.modalTransitionStyle = .crossDissolve
+            present(redditDetailViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func restoreRedditController() {
+        let page = UserDefaults.standard.integer(forKey: "page")
+        let after = UserDefaults.standard.string(forKey: "after")
+        let before = UserDefaults.standard.string(forKey: "before")
+        let direction = Direction(rawValue: UserDefaults.standard.string(forKey: "direction") ?? "none") ?? .none
+        let row = UserDefaults.standard.integer(forKey: "row")
+        offsetIndexPath = IndexPath(row: row, section: 0)
+        redditController.restore(before: before, after: after, page: page, direction: direction)
     }
 }
 
@@ -157,11 +169,6 @@ extension RedditTopListViewController: UITableViewDataSource {
             populate(topListCell, with: child)
         }
         
-        if indexPath.row == 0, let offsetIndexPath = offsetIndexPath {
-            self.offsetIndexPath = nil
-            tableView.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
-        }
-        
         return cell!
     }
     
@@ -170,15 +177,11 @@ extension RedditTopListViewController: UITableViewDataSource {
         let count = child.numComments ?? 0
         let numberOfComment = "number_of_comments".pluralize(value: count)
         let createdUTC = child.createdUTC ?? Date()
-        let date = "\(Date().offsetFrom(createdUTC))" + NSLocalizedString("ago", comment: "ago")
+        let date = "\(Date().offsetFrom(createdUTC))" + " " + NSLocalizedString("ago", comment: "ago")
         
         cell.delegate = self
         cell.child = child
         cell.configure(title: child.title, author: child.author, numberOfComment: numberOfComment, date: date, thumbnailUrl: child.thumbnail)
-    }
-    
-    private func adjustContentOffset() {
-        
     }
 }
 
@@ -186,14 +189,7 @@ extension RedditTopListViewController: UITableViewDataSource {
 
 extension RedditTopListViewController: RedditTopListTableViewCellDelegate {
     func selectedThumbnail(on cell: RedditTopListTableViewCell) {
-        
-        if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
-            guard let url = cell.child?.image?.url, let thumbnail = cell.child?.thumbnail else { return }
-            
-            redditDetailViewController.url = url
-            redditDetailViewController.thumbnail = thumbnail
-            redditDetailViewController.modalTransitionStyle = .crossDissolve
-            present(redditDetailViewController, animated: true, completion: nil)
-        }
+        guard let url = cell.child?.image?.url, let thumbnail = cell.child?.thumbnail else { return }
+        presentDetailView(url: url, thumbnail: thumbnail)
     }
 }
