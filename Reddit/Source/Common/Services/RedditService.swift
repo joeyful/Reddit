@@ -12,7 +12,8 @@ import Foundation
 class RedditService {
 
     private let api : API
-    
+    private let connectionRetryLimit = 3
+
     init(api : API) {
         self.api = api
     }
@@ -21,7 +22,7 @@ class RedditService {
         self.init(api: RedditAPI())
     }
     
-    func top(after: String?, before: String?, count: Int, responseQueue: DispatchQueue, success: @escaping (Top) -> Void, error errorCallback: @escaping (String) -> Void) {
+    func top(after: String?, before: String?, count: Int, retryCount: Int = 3, responseQueue: DispatchQueue, success: @escaping (Top) -> Void, error errorCallback: @escaping (String) -> Void) {
         
         var request = APIRequest(.get, path: "top.json")
         
@@ -38,9 +39,19 @@ class RedditService {
             }
         }, error: { error in
             
-            responseQueue.async {
-                errorCallback(error)
+            if retryCount < self.connectionRetryLimit {
+                DispatchQueue.main.asyncAfter(deadline: .now() + self.retryTimeInterval(forRetryCount: retryCount)) {
+                    self.top(after: after, before: before, count: retryCount + 1, responseQueue: responseQueue, success: success, error: errorCallback)
+                }
+            } else {
+                responseQueue.async {
+                    errorCallback(error)
+                }
             }
         })
+    }
+    
+    private func retryTimeInterval(forRetryCount retryCount : Int) -> DispatchTimeInterval {
+        return .milliseconds(500 * (retryCount ^ 2))
     }
 }

@@ -33,6 +33,15 @@ class RedditTopListTableViewCell: UITableViewCell {
         byLabel?.text = NSLocalizedString("by", comment: "by")
     }
     
+    override func prepareForReuse() {
+        titleLabel?.text = nil
+        authorLabel?.text = nil
+        numberOfCommentLabel?.text = nil
+        dateLabel?.text = nil
+        thumbnailImageContentView?.url = nil
+        
+    }
+    
     // MARK: - Pubilc Function
 
     func configure(title: String?, author: String?, numberOfComment: String?, date: String?, thumbnailUrl: URL?) {

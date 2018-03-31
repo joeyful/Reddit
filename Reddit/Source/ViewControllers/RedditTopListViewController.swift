@@ -13,7 +13,6 @@ enum Direction: String { case after = "after", before = "before", none = "none" 
 class RedditTopListViewController: UIViewController {
 
     private var offsetIndexPath: IndexPath?
-    private var isOffsetAdjustmentNeeded = false
     private let refreshControl = UIRefreshControl()
     private let redditController = RedditController.shared
 
@@ -30,49 +29,45 @@ class RedditTopListViewController: UIViewController {
         super.viewDidLoad()
 
         setupUserInterface()
-        if UserDefaults.standard.bool(forKey: "isStartFromRestoration") == false  {
-            loadList(.none)
-        }
-    }
+        
+        let page = UserDefaults.standard.integer(forKey: "page")
+        let after = UserDefaults.standard.string(forKey: "after")
+        let before = UserDefaults.standard.string(forKey: "before")
+        let row = UserDefaults.standard.integer(forKey: "row")
+        offsetIndexPath = IndexPath(row: row, section: 0)
 
+        var direction = Direction.none
+        if let rawValue = UserDefaults.standard.string(forKey: "direction") {
+            direction = Direction(rawValue: rawValue) ?? .none
+        }
+        redditController.restore(before: before, after: after, page: page, direction: direction)
+        loadList(direction)
+    }
+    
     // MARK: - State Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        
-        UserDefaults.standard.set(true, forKey: "isStartFromRestoration")
-        
+                
         coder.encode(redditController.previousPage, forKey: "page")
         coder.encode(redditController.previousAfter, forKey: "after")
         coder.encode(redditController.previousBefore, forKey: "before")
         coder.encode(redditController.direction.rawValue, forKey: "direction")
 
         if let indexPath = tableView?.indexPathsForVisibleRows?.first {
-            coder.encode(indexPath, forKey: "offsetIndexPath")
+            coder.encode(indexPath.row, forKey: "row")
+            UserDefaults.standard.set(indexPath.row, forKey: "row")
         }
         
+        UserDefaults.standard.set(redditController.previousPage, forKey: "page")
+        UserDefaults.standard.set(redditController.previousAfter, forKey: "after")
+        UserDefaults.standard.set(redditController.previousBefore, forKey: "before")
+        UserDefaults.standard.set(redditController.direction.rawValue, forKey: "direction")
+
         super.encodeRestorableState(with: coder)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        
-        let page = coder.decodeInteger(forKey: "page")
-        let after = coder.decodeObject(forKey: "after") as? String
-        let before = coder.decodeObject(forKey: "before") as? String
-        
-        var direction = Direction.none
-        if let rawValue = coder.decodeObject(forKey: "direction") as? String {
-            direction = Direction(rawValue: rawValue) ?? .none
-        }
-        redditController.restore(before: before, after: after, page: page, direction: direction)
-
-        offsetIndexPath = coder.decodeObject(forKey: "offsetIndexPath") as? IndexPath
-        isOffsetAdjustmentNeeded = true
         super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-        UserDefaults.standard.set(false, forKey: "isStartFromRestoration")
-        loadList(redditController.direction)
     }
 }
 
@@ -144,9 +139,9 @@ extension RedditTopListViewController: UITableViewDataSource {
             populate(topListCell, with: child)
         }
         
-        if isOffsetAdjustmentNeeded == true, indexPath.row == 0, let offsetIndexPath = offsetIndexPath {
+        if indexPath.row == 0, let offsetIndexPath = offsetIndexPath {
+            self.offsetIndexPath = nil
             tableView.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
-            isOffsetAdjustmentNeeded = false
         }
         
         return cell!
