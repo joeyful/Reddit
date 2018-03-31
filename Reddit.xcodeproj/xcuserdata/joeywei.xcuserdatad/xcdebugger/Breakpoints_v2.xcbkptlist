@@ -22,59 +22,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reddit/Source/DataModelControllers/RedditController.swift"
-            timestampString = "544143662.968908"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "loadList(_:success:error:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Reddit.Top) -&gt; () in Reddit.RedditController.loadList(Reddit.Direction, success: () -&gt; (), error: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Reddit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joeywei/Desktop/Reddit/Reddit/Source/DataModelControllers/RedditController.swift"
-                  timestampString = "544149240.855085"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "144">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Array&lt;Reddit.Child&gt; in closure #1 (Reddit.Top) -&gt; () in Reddit.RedditController.loadList(Reddit.Direction, success: () -&gt; (), error: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "Reddit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joeywei/Desktop/Reddit/Reddit/Source/DataModelControllers/RedditController.swift"
-                  timestampString = "544149240.858976"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reddit/Source/DataModels/Image.swift"
-            timestampString = "544149240.775339"
+            timestampString = "544149447.8512371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"

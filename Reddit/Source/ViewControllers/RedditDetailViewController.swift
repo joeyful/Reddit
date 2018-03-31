@@ -10,8 +10,18 @@ import UIKit
 
 class RedditDetailViewController: UIViewController {
 
-    var thumbnail: URL?
+    var child: Child?
+    private var isThumbnailLoaded = false
+
+    // MARK: - Outlets
+
+    @IBOutlet weak var imageContentView  : ImageContentView?
+    @IBOutlet weak var saveButton        : UIButton?
+    @IBOutlet weak var cancelButton      : UIButton?
+    @IBOutlet weak var loadingGuardView  : UIView?
     
+    // MARK: - Class Function
+
     class func buildFromStoryboard() -> RedditDetailViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
@@ -19,21 +29,61 @@ class RedditDetailViewController: UIViewController {
         return  redditDetailViewController
     }
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUserInterface()
+    }
+}
 
-        // Do any additional setup after loading the view.
+
+// MARK: - Helper
+
+private extension RedditDetailViewController {
+    
+    func setupUserInterface() {
+        saveButton?.setTitle(NSLocalizedString("Save", comment: "Save"), for: .normal)
+        cancelButton?.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
+        imageContentView?.url = child?.image?.url
+        imageContentView?.delegate = self
+    }
+}
+
+
+// MARK: - Action
+
+extension RedditDetailViewController {
+    
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func save(_ sender: Any) {
+        // save image to photo library
+        // in a group named Reddit
     }
-    */
+}
 
+
+// MARK: - ImageContentViewDelegate
+
+extension RedditDetailViewController: ImageContentViewDelegate {
+    
+    func failLoading(_ error: String) {
+        if isThumbnailLoaded == false {
+            isThumbnailLoaded = true
+            imageContentView?.url = child?.thumbnail
+        }
+        else {
+            presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
+            loadingGuardView?.fadeOut()
+        }
+    }
+    
+    func imageLoaded(_ image: UIImage) {
+        loadingGuardView?.fadeOut()
+        saveButton?.isEnabled = true
+
+    }
 }

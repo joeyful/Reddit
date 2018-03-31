@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol ImageContentViewDelegate: class {
+    func imageLoaded(_ image: UIImage)
+    
+    func failLoading(_ error: String)
+}
+
 class ImageContentView: UIView {
+
+    weak var delegate: ImageContentViewDelegate?
     
     var url : URL? {
         didSet {
@@ -31,10 +39,10 @@ class ImageContentView: UIView {
 
         image = nil
         ImageController.shared.fetch(from: url, success: { [weak self] (image) in
-            guard url == self?.url else { return }
             self?.image = image
-        }) {  (_) in
-            // No nothing
+            self?.delegate?.imageLoaded(image)
+        }) {  [weak self] (error) in
+            self?.delegate?.failLoading(error)
         }
     }
 

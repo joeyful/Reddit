@@ -9,11 +9,12 @@
 import UIKit
 
 protocol RedditTopListTableViewCellDelegate: class {
-    func topListCell(_ cell : RedditTopListTableViewCell, didSelect thumbnail : URL?)
+    func didSelectTopListCell(_ cell: RedditTopListTableViewCell)
 }
 
 class RedditTopListTableViewCell: UITableViewCell {
 
+    var child: Child?
     weak var delegate : RedditTopListTableViewCellDelegate?
     
     @IBOutlet weak var titleLabel           : UILabel?
@@ -48,6 +49,6 @@ class RedditTopListTableViewCell: UITableViewCell {
 
 extension RedditTopListTableViewCell {
     @IBAction func detail(_ button: UIButton) {
-        delegate?.topListCell(self, didSelect: thumbnailImageContentView?.url)
+        delegate?.didSelectTopListCell(self)
     }
 }

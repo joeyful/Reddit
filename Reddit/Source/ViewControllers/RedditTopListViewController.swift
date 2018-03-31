@@ -135,7 +135,6 @@ extension RedditTopListViewController: UITableViewDataSource {
         if let topListCell = cell as? RedditTopListTableViewCell, indexPath.row < list.count {
             let child = list[indexPath.row]
             populate(topListCell, with: child)
-            topListCell.delegate = self
         }
         
         return cell!
@@ -147,18 +146,20 @@ extension RedditTopListViewController: UITableViewDataSource {
         let numberOfComment = "number_of_comments".pluralize(value: count)
         let createdUTC = child.createdUTC ?? Date()
         let date = "\(Date().offsetFrom(createdUTC))" + NSLocalizedString("ago", comment: "ago")
-        
         cell.configure(title: child.title, author: child.author, numberOfComment: numberOfComment, date: date, thumbnailUrl: child.thumbnail)
+        
+        cell.delegate = self
+        cell.child = child
     }
 }
 
 // MARK: - RedditTopListTableViewCellDelegate
 
 extension RedditTopListViewController: RedditTopListTableViewCellDelegate {
-    func topListCell(_ cell: RedditTopListTableViewCell, didSelect thumbnail: URL?) {
+    func didSelectTopListCell(_ cell: RedditTopListTableViewCell) {
         
         if let redditDetailViewController = RedditDetailViewController.buildFromStoryboard() {
-            redditDetailViewController.thumbnail = thumbnail
+            redditDetailViewController.child = cell.child
             redditDetailViewController.modalTransitionStyle = .crossDissolve
             present(redditDetailViewController, animated: true, completion: nil)
         }
