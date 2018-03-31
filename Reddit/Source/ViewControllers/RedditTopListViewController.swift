@@ -13,6 +13,8 @@ enum Direction: String { case after = "after", before = "before", none = "none" 
 
 class RedditTopListViewController: UIViewController {
 
+    var index: IndexPath?
+    
     private let refreshControl = UIRefreshControl()
     private let redditController = RedditController.shared
 
@@ -46,6 +48,10 @@ class RedditTopListViewController: UIViewController {
         coder.encode(redditController.previousBefore, forKey: "before")
         coder.encode(redditController.direction.rawValue, forKey: "direction")
 
+        if let index = tableView?.indexPathsForVisibleRows?.first {
+            coder.encode(index, forKey: "index")
+        }
+        
         super.encodeRestorableState(with: coder)
     }
     
@@ -60,6 +66,8 @@ class RedditTopListViewController: UIViewController {
             direction = Direction(rawValue: rawValue) ?? .none
         }
         redditController.restore(before: before, after: after, page: page, direction: direction)
+
+        index = coder.decodeObject(forKey: "index") as? IndexPath
 
         super.decodeRestorableState(with: coder)
     }
@@ -135,6 +143,10 @@ extension RedditTopListViewController: UITableViewDataSource {
         if let topListCell = cell as? RedditTopListTableViewCell, indexPath.row < list.count {
             let child = list[indexPath.row]
             populate(topListCell, with: child)
+        }
+        
+        if indexPath.row == tableView.numberOfRows(inSection: 0) {
+            tableView.scrollToRow(at: index!, at: .top, animated: true)
         }
         
         return cell!

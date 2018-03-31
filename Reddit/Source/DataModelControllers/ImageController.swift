@@ -15,7 +15,7 @@ class ImageController {
     
     private let loader = ImageLoader()
     private let cache = NSCache<NSString, UIImage>()
-    private let connectionRetryLimit = 8
+    private let connectionRetryLimit = 3
     
     private init() {
         
