@@ -8,43 +8,34 @@
 
 import Foundation
 
-struct Preview : Codable {
-    let images : [Image]?
-    
-    var imageURL : URL? {
-        return images?.first?.url
-    }
-}
-
 struct Image : Codable {
     let url : URL?
     let width : Int?
     let height: Int?
     
-    enum CodingKeys: String, CodingKey {
+    enum PreviewKeys: String, CodingKey {
+        case images, enabled
+    }
+    
+    enum ImagesKeys: String, CodingKey {
         case source
     }
     
-    enum ImageKeys: String, CodingKey {
+    enum SourceKeys: String, CodingKey {
         case url
         case width
         case height
     }
     
-    init(from decoder : Decoder) throws {
+    init(from decoder: Decoder) throws {
+        let previewContainer = try decoder.container(keyedBy: PreviewKeys.self)
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let source = try container.nestedContainer(keyedBy: ImageKeys.self, forKey: .source)
-        url = try source.decodeIfPresent(URL.self, forKey: .url)
-        width = try source.decodeIfPresent(Int.self, forKey: .width)
-        height = try source.decodeIfPresent(Int.self, forKey: .height)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        var source = container.nestedContainer(keyedBy: ImageKeys.self, forKey: .source)
-        try source.encodeIfPresent(url, forKey: .url)
-        try source.encodeIfPresent(width, forKey: .width)
-        try source.encodeIfPresent(height, forKey: .height)
+        var imagesUnkeyedContainer = try previewContainer.nestedUnkeyedContainer(forKey: .images)
+        let imageContainer = try imagesUnkeyedContainer.nestedContainer(keyedBy: ImagesKeys.self)
+        
+        let sourceContainer = try imageContainer.nestedContainer(keyedBy: SourceKeys.self, forKey: .source)
+        url = try sourceContainer.decodeIfPresent(URL.self, forKey: .url)
+        width = try sourceContainer.decodeIfPresent(Int.self, forKey: .width)
+        height = try sourceContainer.decodeIfPresent(Int.self, forKey: .height)
     }
 }

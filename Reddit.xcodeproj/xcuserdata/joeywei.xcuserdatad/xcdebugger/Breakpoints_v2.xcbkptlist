@@ -42,7 +42,7 @@
                   moduleName = "Reddit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joeywei/Desktop/Reddit/Reddit/Source/DataModelControllers/RedditController.swift"
-                  timestampString = "544143786.4809361"
+                  timestampString = "544149240.855085"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
@@ -57,7 +57,7 @@
                   moduleName = "Reddit"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/joeywei/Desktop/Reddit/Reddit/Source/DataModelControllers/RedditController.swift"
-                  timestampString = "544143786.484725"
+                  timestampString = "544149240.858976"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
@@ -65,6 +65,22 @@
                   offsetFromSymbolStart = "64">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reddit/Source/DataModels/Image.swift"
+            timestampString = "544149240.775339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

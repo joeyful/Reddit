@@ -14,7 +14,7 @@ struct Top : Codable {
     let before : String?
     let children : [Child]?
     
-    enum CodingKeys: String, CodingKey {
+    enum DataKeys: String, CodingKey {
         case data
     }
     
@@ -26,19 +26,11 @@ struct Top : Codable {
     
     init(from decoder : Decoder) throws {
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: DataKeys.self)
         let data = try container.nestedContainer(keyedBy: TopKeys.self, forKey: .data)
         after = try data.decodeIfPresent(String.self, forKey: .after)
         before = try data.decodeIfPresent(String.self, forKey: .before)
         children = try data.decodeIfPresent([Child].self, forKey: .children)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        var data = container.nestedContainer(keyedBy: TopKeys.self, forKey: .data)
-        try data.encodeIfPresent(after, forKey: .after)
-        try data.encodeIfPresent(before, forKey: .before)
-        try data.encodeIfPresent(children, forKey: .children)
     }
 }
 

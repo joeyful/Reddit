@@ -19,6 +19,7 @@
         <!--Reddit Top List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RedditTopListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="RedditTopListViewController" customModule="Reddit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -270,13 +271,13 @@
                         <outlet property="tableView" destination="93d-Vj-uJQ" id="gT8-TF-Yc6"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2515.9420289855075" y="70.923913043478265"/>
         </scene>
         <!--Reddit Detail View Controller-->
         <scene sceneID="cxg-YL-oAP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5tb-6M-Mxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RedditDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cLQ-U5-Mmy" customClass="RedditDetailViewController" customModule="Reddit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c9Z-kW-YMa"/>
@@ -330,29 +331,6 @@
                                                     <outlet property="imageView" destination="oLl-lL-SHH" id="juh-q8-gUm"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TE-9Q-i6F">
-                                                <rect key="frame" x="0.0" y="393.66666666666669" width="389" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4c-6t-d67">
-                                                        <rect key="frame" x="20" y="0.0" width="349" height="50"/>
-                                                        <color key="backgroundColor" red="0.99805396800000001" green="0.40894004699999997" blue="0.27080255749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="UjW-Qg-j9q"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
-                                                        <state key="normal" title="Reactivate">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="p4c-6t-d67" firstAttribute="leading" secondItem="7TE-9Q-i6F" secondAttribute="leading" constant="20" id="4tt-AK-dwW"/>
-                                                    <constraint firstAttribute="trailing" secondItem="p4c-6t-d67" secondAttribute="trailing" constant="20" id="8Qs-F6-tHM"/>
-                                                    <constraint firstAttribute="bottom" secondItem="p4c-6t-d67" secondAttribute="bottom" id="9ke-H5-aeT"/>
-                                                    <constraint firstItem="p4c-6t-d67" firstAttribute="top" secondItem="7TE-9Q-i6F" secondAttribute="top" id="Srr-pi-Wc8"/>
-                                                </constraints>
-                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdo-FR-gJm">
                                                 <rect key="frame" x="0.0" y="615" width="389" height="36"/>
                                                 <constraints>
@@ -378,9 +356,9 @@
                         <color key="backgroundColor" red="0.96472346779999996" green="0.96468734739999995" blue="0.96471190449999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="PVk-mj-6M1" firstAttribute="leading" secondItem="SmJ-06-WUT" secondAttribute="leading" constant="12.5" id="4uV-GL-9I8"/>
-                            <constraint firstItem="PVk-mj-6M1" firstAttribute="top" secondItem="c9Z-kW-YMa" secondAttribute="bottom" constant="20" id="6lU-Dk-V2t"/>
+                            <constraint firstItem="PVk-mj-6M1" firstAttribute="top" secondItem="SmJ-06-WUT" secondAttribute="top" constant="40" id="6lU-Dk-V2t"/>
                             <constraint firstItem="mAS-Js-XHY" firstAttribute="leading" secondItem="PVk-mj-6M1" secondAttribute="leading" id="9h5-nd-a5Z"/>
-                            <constraint firstItem="FNn-J6-8A8" firstAttribute="top" secondItem="PVk-mj-6M1" secondAttribute="bottom" constant="20" id="Dpp-Vx-jbN"/>
+                            <constraint firstAttribute="bottom" secondItem="PVk-mj-6M1" secondAttribute="bottom" constant="20" id="Dpp-Vx-jbN"/>
                             <constraint firstAttribute="trailing" secondItem="PVk-mj-6M1" secondAttribute="trailing" constant="12.5" id="GY5-SH-28U"/>
                             <constraint firstItem="mAS-Js-XHY" firstAttribute="bottom" secondItem="PVk-mj-6M1" secondAttribute="bottom" id="M0O-Vf-kww"/>
                             <constraint firstItem="mAS-Js-XHY" firstAttribute="trailing" secondItem="PVk-mj-6M1" secondAttribute="trailing" id="n0h-2W-vtt"/>
@@ -391,7 +369,6 @@
                     <navigationItem key="navigationItem" id="rae-xP-KxQ"/>
                     <nil key="simulatedTopBarMetrics"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5tb-6M-Mxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3304" y="71"/>
         </scene>
