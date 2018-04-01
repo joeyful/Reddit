@@ -55,24 +55,25 @@ extension RedditController {
     }
     
     func loadList(_ direction: Direction, success: @escaping () -> Void, error errorHandle: @escaping (String) -> Void) {
-        RedditController.shared.top(direction, success: { result in
-            self.list = result.children ?? []
-            self.previousAfter = self.after
-            self.previousBefore = self.before
-            self.previousPage = self.page
-            self.after = result.after
-            self.before = result.before
+        RedditController.shared.top(direction, success: { [weak self] result in
+            guard let StrongSelf = self else { return }
+            StrongSelf.list = result.children ?? []
+            StrongSelf.previousAfter = StrongSelf.after
+            StrongSelf.previousBefore = StrongSelf.before
+            StrongSelf.previousPage = StrongSelf.page
+            StrongSelf.after = result.after
+            StrongSelf.before = result.before
             
-            self.direction = direction
+            StrongSelf.direction = direction
             switch direction {
             case .none:
-                self.page = 0
+                StrongSelf.page = 0
                 
             case .after:
-                self.page += 1
+                StrongSelf.page += 1
                 
             case .before:
-                self.page -= 1
+                StrongSelf.page -= 1
             }
             
             success()

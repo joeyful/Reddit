@@ -37,17 +37,19 @@ class ImageController {
         }
         else {
             
-            loader.load(from: url, success: { (image) in
-                
-                self.cache.setObject(image, forKey: urlString)
+            loader.load(from: url, success: { [weak self] (image) in
+                guard let StrongSelf = self else { return }
+
+                StrongSelf.cache.setObject(image, forKey: urlString)
                 DispatchQueue.main.async {
                     success(image)
                 }
-            }, error: { (error) in
-                
-                if retryCount < self.connectionRetryLimit {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + self.retryTimeInterval(forRetryCount: retryCount)) {
-                        self.fetch(from: url, retryCount: retryCount + 1, success: success, error: errorHandler)
+            }, error: { [weak self] (error) in
+                guard let StrongSelf = self else { return }
+
+                if retryCount < StrongSelf.connectionRetryLimit {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + StrongSelf.retryTimeInterval(forRetryCount: retryCount)) {
+                        StrongSelf.fetch(from: url, retryCount: retryCount + 1, success: success, error: errorHandler)
                     }
                 } else {
                     DispatchQueue.main.async {

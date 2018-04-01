@@ -42,6 +42,7 @@ class RedditDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUserInterface()
+        
         UserDefaults.standard.set(thumbnail, forKey: "thumbnail")
         UserDefaults.standard.set(url, forKey: "url")
     }

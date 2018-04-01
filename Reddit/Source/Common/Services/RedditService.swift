@@ -37,11 +37,11 @@ class RedditService {
             responseQueue.async {
                 success(result)
             }
-        }, error: { error in
-            
-            if retryCount < self.connectionRetryLimit {
-                DispatchQueue.main.asyncAfter(deadline: .now() + self.retryTimeInterval(forRetryCount: retryCount)) {
-                    self.top(after: after, before: before, count: retryCount + 1, responseQueue: responseQueue, success: success, error: errorCallback)
+        }, error: { [weak self] error in
+            guard let StrongSelf = self else { return }
+            if retryCount < StrongSelf.connectionRetryLimit {
+                DispatchQueue.main.asyncAfter(deadline: .now() + StrongSelf.retryTimeInterval(forRetryCount: retryCount)) {
+                    StrongSelf.top(after: after, before: before, count: retryCount + 1, responseQueue: responseQueue, success: success, error: errorCallback)
                 }
             } else {
                 responseQueue.async {

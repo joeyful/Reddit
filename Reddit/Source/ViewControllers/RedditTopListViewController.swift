@@ -114,16 +114,23 @@ private extension RedditTopListViewController {
         loadingGuardView?.fadeIn()
         refreshControl.endRefreshing()
         redditController.loadList(direction, success: { [weak self] in
-            self?.updateUserInterface()
-            if let offsetIndexPath = self?.offsetIndexPath, self?.tableView?.numberOfRows(inSection: 0) ?? 0 > 0 {
-                self?.offsetIndexPath = nil
-                self?.tableView?.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
+            guard let StrongSelf = self else { return }
+            StrongSelf.updateUserInterface()
+            if let offsetIndexPath = StrongSelf.offsetIndexPath, StrongSelf.tableView?.numberOfRows(inSection: 0) ?? 0 > 0 {
+                StrongSelf.offsetIndexPath = nil
+                StrongSelf.tableView?.scrollToRow(at: offsetIndexPath, at: .top, animated: true)
             }
             
-            self?.loadingGuardView?.fadeOut()
+            StrongSelf.loadingGuardView?.fadeOut()
         }, error: { [weak self] error in
-            self?.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
-            self?.loadingGuardView?.fadeOut()
+            guard let StrongSelf = self else { return }
+            if direction == .none {
+                StrongSelf.presentAlert(title: NSLocalizedString("Error", comment: "error alert title"), message: error)
+                StrongSelf.loadingGuardView?.fadeOut()
+            }
+            else {
+                StrongSelf.loadList()
+            }
         })
     }
     
