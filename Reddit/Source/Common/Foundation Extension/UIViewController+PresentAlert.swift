@@ -1,5 +1,5 @@
 //
-//  UIViewController+presentAlert.swift
+//  UIViewController+PresentAlert.swift
 //  Reddit
 //
 //  Created by Joey Wei on 3/29/18.

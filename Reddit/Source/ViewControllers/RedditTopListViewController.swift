@@ -65,10 +65,6 @@ class RedditTopListViewController: UIViewController {
 
         super.encodeRestorableState(with: coder)
     }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        super.decodeRestorableState(with: coder)
-    }
 }
 
 // MARK: - Action
@@ -162,7 +158,7 @@ private extension RedditTopListViewController {
         let row = UserDefaults.standard.integer(forKey: "row")
         offsetIndexPath = IndexPath(row: row, section: 0)
         redditController.restore(before: before, after: after, page: page, direction: direction)
-    }
+}
 }
 
 

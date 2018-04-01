@@ -21,7 +21,7 @@
 		BF355AB5206CC25C00151E13 /* RedditTopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AAB206CC25C00151E13 /* RedditTopListViewController.swift */; };
 		BF355AB7206CC4CD00151E13 /* RedditAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AB6206CC4CD00151E13 /* RedditAPI.swift */; };
 		BF355AB9206CD6A400151E13 /* Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AB8206CD6A400151E13 /* Children.swift */; };
-		BF355ABC206CD97500151E13 /* UIViewController+presentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */; };
+		BF355ABC206CD97500151E13 /* UIViewController+PresentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABB206CD97500151E13 /* UIViewController+PresentAlert.swift */; };
 		BF355ABE206D5C1F00151E13 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABD206D5C1F00151E13 /* CardView.swift */; };
 		BF355AC0206D5D0900151E13 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */; };
 		BF355AC3206D61E300151E13 /* RedditTopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AC2206D61E300151E13 /* RedditTopListTableViewCell.swift */; };
@@ -76,7 +76,7 @@
 		BF355AAB206CC25C00151E13 /* RedditTopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditTopListViewController.swift; sourceTree = "<group>"; };
 		BF355AB6206CC4CD00151E13 /* RedditAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditAPI.swift; sourceTree = "<group>"; };
 		BF355AB8206CD6A400151E13 /* Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Children.swift; sourceTree = "<group>"; };
-		BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAlert.swift"; sourceTree = "<group>"; };
+		BF355ABB206CD97500151E13 /* UIViewController+PresentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentAlert.swift"; sourceTree = "<group>"; };
 		BF355ABD206D5C1F00151E13 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		BF355AC2206D61E300151E13 /* RedditTopListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTopListTableViewCell.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				BF355AD2206DE35400151E13 /* String+Pluralization.swift */,
 				BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */,
 				BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */,
-				BF355ABB206CD97500151E13 /* UIViewController+presentAlert.swift */,
+				BF355ABB206CD97500151E13 /* UIViewController+PresentAlert.swift */,
 				BF355ACA206D7C1700151E13 /* UIView+Fade.swift */,
 				BF355ABF206D5D0900151E13 /* UIView+Shadow.swift */,
 			);
@@ -419,7 +419,7 @@
 				BFC1CADB206EF43D004684E7 /* Image.swift in Sources */,
 				BF355AB7206CC4CD00151E13 /* RedditAPI.swift in Sources */,
 				BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */,
-				BF355ABC206CD97500151E13 /* UIViewController+presentAlert.swift in Sources */,
+				BF355ABC206CD97500151E13 /* UIViewController+PresentAlert.swift in Sources */,
 				BF355ACD206DD07900151E13 /* Date+Offset.swift in Sources */,
 				BF355AAD206CC25C00151E13 /* Top.swift in Sources */,
 				BF355AB1206CC25C00151E13 /* RedditService.swift in Sources */,
@@ -613,7 +613,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joeyfulwei.Reddit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -628,7 +628,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joeyfulwei.Reddit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
