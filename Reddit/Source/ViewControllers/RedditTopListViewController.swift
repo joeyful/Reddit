@@ -165,7 +165,7 @@ private extension RedditTopListViewController {
         let row = UserDefaults.standard.integer(forKey: "row")
         offsetIndexPath = IndexPath(row: row, section: 0)
         redditController.restore(before: before, after: after, page: page, direction: direction)
-}
+    }
 }
 
 
@@ -178,8 +178,7 @@ extension RedditTopListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RedditTopListTableViewCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RedditTopListTableViewCell", for: indexPath)
         let list = redditController.list
         
         if let topListCell = cell as? RedditTopListTableViewCell, indexPath.row < list.count {
@@ -187,7 +186,7 @@ extension RedditTopListViewController: UITableViewDataSource {
             populate(topListCell, with: child)
         }
         
-        return cell!
+        return cell
     }
     
     private func populate(_ cell: RedditTopListTableViewCell, with child: Child) {

@@ -181,6 +181,7 @@
 				BF355AAC206CC25C00151E13 /* Views */,
 				BF355AAA206CC25C00151E13 /* ViewControllers */,
 				BF355AA2206CC25C00151E13 /* DataModelControllers */,
+				BF355AA9206CC25C00151E13 /* Services */,
 				BF355A9B206CC25C00151E13 /* DataModels */,
 				BF355A9D206CC25C00151E13 /* Storyboard */,
 				BF355AA4206CC25C00151E13 /* Common */,
@@ -222,7 +223,6 @@
 				BF355AA7206CC25C00151E13 /* AppDelegate.swift */,
 				BF355ABD206D5C1F00151E13 /* CardView.swift */,
 				BF355ABA206CD94B00151E13 /* Foundation Extension */,
-				BF355AA9206CC25C00151E13 /* Services */,
 			);
 			path = Common;
 			sourceTree = "<group>";
