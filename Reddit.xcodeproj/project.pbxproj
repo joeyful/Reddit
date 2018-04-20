@@ -30,10 +30,10 @@
 		BF355AC9206D7B9C00151E13 /* ImageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AC8206D7B9C00151E13 /* ImageContentView.swift */; };
 		BF355ACB206D7C1700151E13 /* UIView+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ACA206D7C1700151E13 /* UIView+Fade.swift */; };
 		BF355ACD206DD07900151E13 /* Date+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355ACC206DD07900151E13 /* Date+Offset.swift */; };
-		BF355AD1206DE16800151E13 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = BF355AD0206DE16800151E13 /* Localizable.stringsdict */; };
 		BF355AD3206DE35400151E13 /* String+Pluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD2206DE35400151E13 /* String+Pluralization.swift */; };
 		BF355AD5206DF1D300151E13 /* UITableView+AutoSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */; };
 		BF355AD7206DFC3800151E13 /* String+PercentageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */; };
+		BF5C4DF8208AA53D00F11022 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = BF5C4DF7208AA53D00F11022 /* Localizable.stringsdict */; };
 		BFC1CAD9206EDBEE004684E7 /* RedditDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */; };
 		BFC1CADB206EF43D004684E7 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1CADA206EF43D004684E7 /* Image.swift */; };
 /* End PBXBuildFile section */
@@ -85,10 +85,10 @@
 		BF355AC8206D7B9C00151E13 /* ImageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContentView.swift; sourceTree = "<group>"; };
 		BF355ACA206D7C1700151E13 /* UIView+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
 		BF355ACC206DD07900151E13 /* Date+Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Offset.swift"; sourceTree = "<group>"; };
-		BF355AD0206DE16800151E13 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; name = Localizable.stringsdict; path = ../../../Work/Reddit/Reddit/Resources/Localizable.stringsdict; sourceTree = "<group>"; };
 		BF355AD2206DE35400151E13 /* String+Pluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pluralization.swift"; sourceTree = "<group>"; };
 		BF355AD4206DF1D300151E13 /* UITableView+AutoSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+AutoSize.swift"; sourceTree = "<group>"; };
 		BF355AD6206DFC3800151E13 /* String+PercentageEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PercentageEncoding.swift"; sourceTree = "<group>"; };
+		BF5C4DF7208AA53D00F11022 /* Localizable.stringsdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		BFC1CAD8206EDBEE004684E7 /* RedditDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditDetailViewController.swift; sourceTree = "<group>"; };
 		BFC1CADA206EF43D004684E7 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,7 +169,7 @@
 		BF355A97206CC25400151E13 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BF355AD0206DE16800151E13 /* Localizable.stringsdict */,
+				BF5C4DF7208AA53D00F11022 /* Localizable.stringsdict */,
 				BF355A98206CC25400151E13 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -387,7 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF355A99206CC25400151E13 /* Assets.xcassets in Resources */,
-				BF355AD1206DE16800151E13 /* Localizable.stringsdict in Resources */,
+				BF5C4DF8208AA53D00F11022 /* Localizable.stringsdict in Resources */,
 				BF355AAF206CC25C00151E13 /* Main.storyboard in Resources */,
 				BF355AAE206CC25C00151E13 /* LaunchScreen.storyboard in Resources */,
 			);
